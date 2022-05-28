@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../core/Tick.h"
+#include "../modules/core/Tick.h"
 
 class TickImplement : public Tick {
   public:
