@@ -1,5 +1,4 @@
-#ifndef LOOP_H
-#define LOOP_H
+#pragma once
 
 #include <iostream>
 #include <utility>
@@ -26,5 +25,3 @@ class Loop {
 
     void Render();
 };
-
-#endif
