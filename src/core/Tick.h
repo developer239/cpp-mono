@@ -1,6 +1,6 @@
 #pragma once
 
-class Time {
+class Tick {
   public:
     double msPreviousFrame = 0;
 

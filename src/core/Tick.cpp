@@ -1,9 +1,9 @@
-#include "Time.h"
+#include "Tick.h"
 
-void Time::UpdateDeltaTime() {
+void Tick::UpdateDeltaTime() {
   deltaTime = (GetTicks() - msPreviousFrame) / 1000.0;
 }
 
-void Time::UpdateMsPreviousFrame() {
+void Tick::UpdateMsPreviousFrame() {
   msPreviousFrame = GetTicks();
 }

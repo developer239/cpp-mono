@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../core/Time.h"
+#include "../core/Tick.h"
 
-class TimeImplement : public Time {
+class TimeImplement : public Tick {
   public:
     double GetTicks() override;
 };

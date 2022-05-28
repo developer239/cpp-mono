@@ -7,8 +7,8 @@ add_executable(cpp_mono
         src/main.cpp
         src/core/Loop.h
         src/core/Loop.cpp
-        src/core/Time.h
-        src/core/Time.cpp
+        src/core/Tick.h
+        src/core/Tick.cpp
         src/core/Renderer.h
         src/core-sdl-implement/TimeImplement.cpp
         src/core-sdl-implement/TimeImplement.h

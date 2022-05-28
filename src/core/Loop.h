@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <utility>
-#include "Time.h"
+#include "Tick.h"
 #include "Renderer.h"
 #include "Loop.structs.h"
 
@@ -10,11 +10,11 @@ class Loop {
   public:
     LoopState state;
 
-    std::shared_ptr<Time> time;
+    std::shared_ptr<Tick> time;
     std::shared_ptr<Renderer> renderer;
 
     explicit Loop(
-        std::shared_ptr<Time> time,
+        std::shared_ptr<Tick> time,
         std::shared_ptr<Renderer> renderer
     ) :
         time(std::move(time)),
