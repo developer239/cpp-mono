@@ -1,2 +1,2 @@
 add_subdirectory(core)
-add_subdirectory(event-bus)
+add_subdirectory(events)

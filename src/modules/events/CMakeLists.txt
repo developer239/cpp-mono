@@ -1,4 +1,4 @@
-set(LIB_NAME EventBus)
+set(LIB_NAME Events)
 
 aux_source_directory(. SRC_FILES)
 

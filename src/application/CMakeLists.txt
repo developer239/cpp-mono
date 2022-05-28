@@ -6,5 +6,4 @@ add_executable(${APP_NAME} ${SRC_FILES})
 
 target_link_libraries(${APP_NAME} PRIVATE Core)
 target_link_libraries(${APP_NAME} PRIVATE CoreSDLImplementation)
-target_link_libraries(${APP_NAME} PRIVATE EventBus)
-
+target_link_libraries(${APP_NAME} PRIVATE Events)
