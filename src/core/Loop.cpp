@@ -15,12 +15,15 @@ void Loop::Run() {
   }
 }
 
-void Loop::ProcessInput() {
+void Loop::ProcessInput() const {
+  eventManager->HandleInput();
 }
 
 void Loop::Update() const {
   time->UpdateDeltaTime();
   time->UpdateMsPreviousFrame();
+
+  eventManager->ResetEventBus();
 
   // game logic
 }

@@ -16,4 +16,6 @@ add_executable(cpp_mono
         src/core-sdl-implement/RendererImplement.h
         src/event-bus/Event.h
         src/event-bus/EventBus.h
-        )
+        src/core/EventManager.cpp
+        src/core/EventManager.h
+        src/core-sdl-implement/EventManagerImplement.cpp src/core-sdl-implement/EventManagerImplement.h)

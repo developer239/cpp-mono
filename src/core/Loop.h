@@ -5,6 +5,7 @@
 #include "Tick.h"
 #include "Renderer.h"
 #include "Loop.structs.h"
+#include "EventManager.h"
 
 class Loop {
   public:
@@ -12,13 +13,16 @@ class Loop {
 
     std::shared_ptr<Tick> time;
     std::shared_ptr<Renderer> renderer;
+    std::shared_ptr<EventManager> eventManager;
 
     explicit Loop(
         std::shared_ptr<Tick> time,
-        std::shared_ptr<Renderer> renderer
+        std::shared_ptr<Renderer> renderer,
+        std::shared_ptr<EventManager> eventManager
     ) :
         time(std::move(time)),
-        renderer(std::move(renderer)) {
+        renderer(std::move(renderer)),
+        eventManager(std::move(eventManager)) {
     }
 
     ~Loop() = default;
@@ -27,7 +31,7 @@ class Loop {
 
     void Run();
 
-    void ProcessInput();
+    void ProcessInput() const;
 
     void Update() const;
 
