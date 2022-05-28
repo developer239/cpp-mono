@@ -1,8 +1,8 @@
 #include "../core/Loop.h"
 #include "../event-bus/EventBus.h"
-#include "../core-sdl-implement/Tick.implement.h"
-#include "../core-sdl-implement/Renderer.implement.h"
-#include "../core-sdl-implement/EventManager.implement.h"
+#include "../implements/core-sdl/Tick.implement.h"
+#include "../implements/core-sdl/Renderer.implement.h"
+#include "../implements/core-sdl/EventManager.implement.h"
 
 int main() {
   auto time = std::make_shared<TickImplement>();
