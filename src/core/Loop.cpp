@@ -1,6 +1,7 @@
 #include "Loop.h"
 
-void Loop::Setup() {
+void Loop::Setup() const {
+  renderer->Initialize();
 }
 
 void Loop::Run() {
@@ -25,4 +26,5 @@ void Loop::Update() const {
 }
 
 void Loop::Render() {
+  renderer->Render();
 }

@@ -3,4 +3,11 @@ project(cpp_mono)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(cpp_mono src/main.cpp src/core/Loop.h src/core/Time.h src/core/Time.cpp src/core/Loop.cpp)
+add_executable(cpp_mono
+        src/main.cpp
+        src/core/Loop.h
+        src/core/Loop.cpp
+        src/core/Time.h
+        src/core/Time.cpp
+        src/core/Renderer.h
+        )
