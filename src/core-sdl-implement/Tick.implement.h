@@ -2,7 +2,7 @@
 
 #include "../core/Tick.h"
 
-class TimeImplement : public Tick {
+class TickImplement : public Tick {
   public:
     double GetTicks() override;
 };

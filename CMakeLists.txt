@@ -10,12 +10,12 @@ add_executable(cpp_mono
         src/core/Tick.h
         src/core/Tick.cpp
         src/core/Renderer.h
-        src/core-sdl-implement/TimeImplement.cpp
-        src/core-sdl-implement/TimeImplement.h
-        src/core-sdl-implement/RendererImplement.cpp
-        src/core-sdl-implement/RendererImplement.h
+        src/core-sdl-implement/Tick.implement.cpp
+        src/core-sdl-implement/Tick.implement.h
+        src/core-sdl-implement/Renderer.implement.cpp
+        src/core-sdl-implement/Renderer.implement.h
         src/event-bus/Event.h
         src/event-bus/EventBus.h
         src/core/EventManager.cpp
         src/core/EventManager.h
-        src/core-sdl-implement/EventManagerImplement.cpp src/core-sdl-implement/EventManagerImplement.h)
+        src/core-sdl-implement/EventManager.implement.cpp src/core-sdl-implement/EventManager.implement.h)
