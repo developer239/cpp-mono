@@ -6,6 +6,7 @@ void Loop::Setup() {
 void Loop::Run() {
   Setup();
 
+  state.isRunning = true;
   while (state.isRunning) {
     ProcessInput();
     Update();
@@ -19,8 +20,6 @@ void Loop::ProcessInput() {
 void Loop::Update() const {
   time->UpdateDeltaTime();
   time->UpdateMsPreviousFrame();
-
-  std::cout << std::to_string(time->msPreviousFrame) << std::endl;
 
   // game logic
 }
