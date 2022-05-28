@@ -1,21 +1,11 @@
 cmake_minimum_required(VERSION 3.22)
-project(cpp_mono)
+project(CppMono)
 
 set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED true)
 
-add_executable(cpp_mono
-        src/main.cpp
-        src/core/Loop.h
-        src/core/Loop.cpp
-        src/core/Tick.h
-        src/core/Tick.cpp
-        src/core/Renderer.h
-        src/core-sdl-implement/Tick.implement.cpp
-        src/core-sdl-implement/Tick.implement.h
-        src/core-sdl-implement/Renderer.implement.cpp
-        src/core-sdl-implement/Renderer.implement.h
-        src/event-bus/Event.h
-        src/event-bus/EventBus.h
-        src/core/EventManager.cpp
-        src/core/EventManager.h
-        src/core-sdl-implement/EventManager.implement.cpp src/core-sdl-implement/EventManager.implement.h)
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+
+enable_testing()
+
+add_subdirectory(src)

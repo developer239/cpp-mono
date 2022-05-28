@@ -11,26 +11,16 @@ class EventBus {
   private:
     std::map<std::type_index, std::unique_ptr<HandlerList>> subscribers;
 
-    HandlerList* GetList(std::type_index type) {
-      return subscribers[type].get();
-    }
+    HandlerList* GetList(std::type_index type);
 
-    bool ShouldCreateList(std::type_index type) {
-      return !GetList(type);
-    }
+    bool ShouldCreateList(std::type_index type);
 
-    void CreateList(std::type_index type) {
-      subscribers[type] = std::make_unique<HandlerList>();
-    }
+    void CreateList(std::type_index type);
 
-    void AddItem(std::type_index type, std::unique_ptr<IEventCallback> subscriber) {
-      subscribers[type]->push_back(std::move(subscriber));
-    }
+    void AddItem(std::type_index type, std::unique_ptr<IEventCallback> subscriber);
 
   public:
-    void Reset() {
-      subscribers.clear();
-    }
+    void Reset();
 
     template<typename TEvent, typename TOwner>
       void SubscribeToEvent(TOwner* ownerInstance, void (TOwner::*callbackFunction)(TEvent&)) {
