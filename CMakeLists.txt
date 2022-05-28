@@ -13,4 +13,5 @@ include(UseCodeCoverage)
 CheckCompilerSupported()
 enable_testing()
 
+add_subdirectory(externals EXCLUDE_FROM_ALL)
 add_subdirectory(src)
