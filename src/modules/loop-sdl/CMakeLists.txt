@@ -1,4 +1,4 @@
-set(LIB_NAME LoopSDLImplementation)
+set(LIB_NAME LoopSDL)
 
 aux_source_directory(. SRC_FILES)
 
