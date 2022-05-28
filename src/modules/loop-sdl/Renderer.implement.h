@@ -4,7 +4,7 @@
 #include <thread>
 #include "../../modules/loop/Renderer.h"
 
-class RendererImplement : public Renderer {
+  class RendererImplement : public Loop::Renderer {
   public:
     void Initialize() override;
 

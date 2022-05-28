@@ -1,5 +1,7 @@
 #pragma once
 
-struct LoopState {
-  bool isRunning = false;
-};
+namespace Loop {
+  struct LoopState {
+    bool isRunning = false;
+  };
+}

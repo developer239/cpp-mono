@@ -1,14 +1,16 @@
 #pragma once
 
-class Tick {
-  public:
-    double msPreviousFrame = 0;
+namespace Loop {
+  class Tick {
+    public:
+      double msPreviousFrame = 0;
 
-    double deltaTime = 0;
+      double deltaTime = 0;
 
-    void UpdateDeltaTime();
+      void UpdateDeltaTime();
 
-    void UpdateMsPreviousFrame();
+      void UpdateMsPreviousFrame();
 
-    virtual double GetTicks() = 0;
-};
+      virtual double GetTicks() = 0;
+  };
+}

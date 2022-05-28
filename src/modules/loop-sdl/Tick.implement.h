@@ -2,7 +2,7 @@
 
 #include "../../modules/loop/Tick.h"
 
-class TickImplement : public Tick {
+class TickImplement : public Loop::Tick {
   public:
     double GetTicks() override;
 };

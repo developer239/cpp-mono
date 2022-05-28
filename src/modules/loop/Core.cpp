@@ -1,10 +1,10 @@
-#include "Loop.h"
+#include "Core.h"
 
-void Loop::Setup() const {
+void Loop::Core::Setup() const {
   renderer->Initialize();
 }
 
-void Loop::Run() {
+void Loop::Core::Run() {
   Setup();
 
   state.isRunning = true;
@@ -15,11 +15,11 @@ void Loop::Run() {
   }
 }
 
-void Loop::ProcessInput() const {
+void Loop::Core::ProcessInput() const {
   eventManager->HandleInput();
 }
 
-void Loop::Update() const {
+void Loop::Core::Update() const {
   time->UpdateDeltaTime();
   time->UpdateMsPreviousFrame();
 
@@ -28,6 +28,6 @@ void Loop::Update() const {
   // game logic
 }
 
-void Loop::Render() {
+void Loop::Core::Render() {
   renderer->Render();
 }

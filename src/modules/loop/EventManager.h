@@ -2,15 +2,17 @@
 
 #include "../events/Bus.h"
 
-class EventManager {
-  public:
-    std::unique_ptr<Events::Bus> eventBus;
+namespace Loop {
+  class EventManager {
+    public:
+      std::unique_ptr<Events::Bus> eventBus;
 
-    EventManager() {
-      eventBus = std::make_unique<Events::Bus>();
-    }
+      EventManager() {
+        eventBus = std::make_unique<Events::Bus>();
+      }
 
-    void ResetEventBus() const;
+      void ResetEventBus() const;
 
-    virtual void HandleInput() = 0;
-};
+      virtual void HandleInput() = 0;
+  };
+}

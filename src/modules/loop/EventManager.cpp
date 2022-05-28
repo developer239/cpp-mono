@@ -1,5 +1,5 @@
 #include "EventManager.h"
 
-void EventManager::ResetEventBus() const {
+void Loop::EventManager::ResetEventBus() const {
   eventBus->Reset();
 }
