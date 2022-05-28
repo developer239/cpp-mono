@@ -14,4 +14,6 @@ add_executable(cpp_mono
         src/core-sdl-implement/TimeImplement.h
         src/core-sdl-implement/RendererImplement.cpp
         src/core-sdl-implement/RendererImplement.h
+        src/event-bus/Event.h
+        src/event-bus/EventBus.h
         )
