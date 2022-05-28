@@ -1,4 +1,4 @@
-set(APP_NAME CppMonoApp)
+set(APP_NAME AppCppMono)
 
 aux_source_directory(. SRC_FILES)
 
