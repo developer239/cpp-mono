@@ -10,4 +10,8 @@ add_executable(cpp_mono
         src/core/Time.h
         src/core/Time.cpp
         src/core/Renderer.h
+        src/core-sdl-implement/TimeImplement.cpp
+        src/core-sdl-implement/TimeImplement.h
+        src/core-sdl-implement/RendererImplement.cpp
+        src/core-sdl-implement/RendererImplement.h
         )
