@@ -4,9 +4,11 @@
 #include <thread>
 #include "../../modules/loop/Renderer.h"
 
+namespace LoopSDL {
   class RendererImplement : public Loop::Renderer {
-  public:
-    void Initialize() override;
+    public:
+      void Initialize() override;
 
-    void Render() override;
-};
+      void Render() override;
+  };
+}

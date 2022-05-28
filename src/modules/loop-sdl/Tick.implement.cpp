@@ -1,5 +1,5 @@
 #include "Tick.implement.h"
 
-double TickImplement::GetTicks() {
+double LoopSDL::TickImplement::GetTicks() {
   return 100;
 }
