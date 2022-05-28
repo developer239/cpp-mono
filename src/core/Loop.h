@@ -55,8 +55,8 @@ template<class GetTicksStrategy>
 
 template<class GetTicksStrategy>
   void Loop<GetTicksStrategy>::Update() {
-    time.updateDeltaTime();
-    time.updateMsPreviousFrame();
+    time.UpdateDeltaTime();
+    time.UpdateMsPreviousFrame();
 
     // game logic
   }

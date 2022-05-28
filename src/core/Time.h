@@ -7,20 +7,20 @@ template<class GetTicksStrategy>
       double msPreviousFrame = 0;
       double deltaTime = 0;
 
-      void updateDeltaTime();
+      void UpdateDeltaTime();
 
-      void updateMsPreviousFrame();
+      void UpdateMsPreviousFrame();
 
       double GetTicks();
   };
 
 template<class GetTicksStrategy>
-  void Time<GetTicksStrategy>::updateDeltaTime() {
+  void Time<GetTicksStrategy>::UpdateDeltaTime() {
     deltaTime = (GetTicks() - msPreviousFrame) / 1000.0;
   }
 
 template<class GetTicksStrategy>
-  void Time<GetTicksStrategy>::updateMsPreviousFrame() {
+  void Time<GetTicksStrategy>::UpdateMsPreviousFrame() {
     msPreviousFrame = GetTicks();
   }
 
