@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <thread>
-#include "../../modules/loop/Renderer.h"
+#include "Renderer.h"
 
 namespace LoopSDL {
   class RendererImplement : public Loop::Renderer {

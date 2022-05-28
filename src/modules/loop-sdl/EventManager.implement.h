@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../modules/loop/EventManager.h"
+#include "EventManager.h"
 
 namespace LoopSDL {
   class EventManagerImplement : public Loop::EventManager {

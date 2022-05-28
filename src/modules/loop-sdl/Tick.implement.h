@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../modules/loop/Tick.h"
+#include "Tick.h"
 
 namespace LoopSDL {
   class TickImplement : public Loop::Tick {
