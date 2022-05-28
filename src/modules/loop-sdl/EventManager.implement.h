@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../modules/core/EventManager.h"
+#include "../../modules/loop/EventManager.h"
 
 class EventManagerImplement: public EventManager {
   public:

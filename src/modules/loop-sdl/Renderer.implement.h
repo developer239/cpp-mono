@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <thread>
-#include "../../modules/core/Renderer.h"
+#include "../../modules/loop/Renderer.h"
 
 class RendererImplement : public Renderer {
   public:
