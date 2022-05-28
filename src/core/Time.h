@@ -1,32 +1,14 @@
-#ifndef CORE_H
-#define CORE_H
+#pragma once
 
-template<class GetTicksStrategy>
-  class Time {
-    public:
-      double msPreviousFrame = 0;
-      double deltaTime = 0;
+class Time {
+  public:
+    double msPreviousFrame = 0;
 
-      void UpdateDeltaTime();
+    double deltaTime = 0;
 
-      void UpdateMsPreviousFrame();
+    void UpdateDeltaTime();
 
-      double GetTicks();
-  };
+    void UpdateMsPreviousFrame();
 
-template<class GetTicksStrategy>
-  void Time<GetTicksStrategy>::UpdateDeltaTime() {
-    deltaTime = (GetTicks() - msPreviousFrame) / 1000.0;
-  }
-
-template<class GetTicksStrategy>
-  void Time<GetTicksStrategy>::UpdateMsPreviousFrame() {
-    msPreviousFrame = GetTicks();
-  }
-
-template<class GetTicksStrategy>
-  double Time<GetTicksStrategy>::GetTicks() {
-    return GetTicksStrategy::GetTicks();
-  }
-
-#endif
+    virtual double GetTicks() = 0;
+};

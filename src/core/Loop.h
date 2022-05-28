@@ -2,67 +2,29 @@
 #define LOOP_H
 
 #include <iostream>
+#include <utility>
 #include "Time.h"
 #include "Loop.structs.h"
 
-template<class GetTicksStrategy>
-  class Loop {
-    public:
-      Time<GetTicksStrategy> time;
-      LoopState state;
+class Loop {
+  public:
+    std::shared_ptr<Time> time;
+    LoopState state;
 
-      Loop();
-
-      ~Loop();
-
-      void Setup();
-
-      void Run();
-
-      void ProcessInput();
-
-      void Update();
-
-      void Render();
-  };
-
-template<class GetTicksStrategy>
-  Loop<GetTicksStrategy>::Loop() {
-    time = Time<GetTicksStrategy>();
-  }
-
-template<class GetTicksStrategy>
-  Loop<GetTicksStrategy>::~Loop() = default;
-
-template<class GetTicksStrategy>
-  void Loop<GetTicksStrategy>::Setup() {
-  }
-
-template<class GetTicksStrategy>
-  void Loop<GetTicksStrategy>::Run() {
-    Setup();
-
-    while (state.isRunning) {
-      ProcessInput();
-      Update();
-      Render();
+    explicit Loop(std::shared_ptr<Time> time) : time(std::move(time)) {
     }
-  }
 
-template<class GetTicksStrategy>
-  void Loop<GetTicksStrategy>::ProcessInput() {
-  }
+    ~Loop() = default;
 
-template<class GetTicksStrategy>
-  void Loop<GetTicksStrategy>::Update() {
-    time.UpdateDeltaTime();
-    time.UpdateMsPreviousFrame();
+    void Setup();
 
-    // game logic
-  }
+    void Run();
 
-template<class GetTicksStrategy>
-  void Loop<GetTicksStrategy>::Render() {
-  }
+    void ProcessInput();
+
+    void Update() const;
+
+    void Render();
+};
 
 #endif

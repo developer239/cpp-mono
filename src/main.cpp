@@ -1,14 +1,16 @@
 #include "core/Loop.h"
 
-struct GetTicksStrategy {
-  static double GetTicks() {
-    std::cout << "GetTicks GetTicks GetTicks" << std::endl;
-    return 0;
-  }
+class TimeImplement : public Time {
+  public:
+    double GetTicks() override {
+      return 100;
+    }
 };
 
 int main() {
-  Loop<GetTicksStrategy> loop;
+  auto time = std::make_shared<TimeImplement>();
+
+  Loop loop(time);
   loop.Run();
 
   return 0;
