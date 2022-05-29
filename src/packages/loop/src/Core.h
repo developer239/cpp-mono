@@ -6,6 +6,7 @@
 #include "Renderer.h"
 #include "Core.structs.h"
 #include "EventManager.h"
+#include "IApp.h"
 
 namespace Loop {
   class Core {
@@ -15,15 +16,18 @@ namespace Loop {
       std::shared_ptr<Tick> time;
       std::shared_ptr<Renderer> renderer;
       std::shared_ptr<EventManager> eventManager;
+      std::shared_ptr<IApp> app;
 
       explicit Core(
           std::shared_ptr<Tick> time,
           std::shared_ptr<Renderer> renderer,
-          std::shared_ptr<EventManager> eventManager
+          std::shared_ptr<EventManager> eventManager,
+          std::shared_ptr<IApp> app
       ) :
           time(std::move(time)),
           renderer(std::move(renderer)),
-          eventManager(std::move(eventManager)) {
+          eventManager(std::move(eventManager)),
+          app(std::move(app)) {
       }
 
       ~Core() = default;

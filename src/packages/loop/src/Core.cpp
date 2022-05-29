@@ -2,6 +2,7 @@
 
 void Loop::Core::Setup() {
   renderer->Initialize(state.window.width, state.window.height);
+  app->Setup();
 }
 
 void Loop::Core::Run() {
@@ -25,9 +26,10 @@ void Loop::Core::Update() const {
 
   eventManager->ResetEventBus();
 
-  // game logic
+  app->OnUpdate();
 }
 
 void Loop::Core::Render() {
   renderer->Render();
+  app->OnRender();
 }

@@ -4,7 +4,7 @@ set(SOURCES
         src/events/KeyPressedEvent.h
         src/systems/KeyboardControlSystem.h
         src/main.cpp
-        )
+        src/App.cpp src/App.h)
 
 add_executable(${APP_NAME} ${SOURCES})
 
