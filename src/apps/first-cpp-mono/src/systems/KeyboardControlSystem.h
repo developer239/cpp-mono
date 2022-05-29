@@ -9,7 +9,7 @@
 
 class KeyboardControlSystem : public System {
   public:
-    void SubscribeToEvents(std::unique_ptr<Events::Bus>& eventBus) {
+    void SubscribeToEvents(const std::shared_ptr<Events::Bus>& eventBus) {
       eventBus->SubscribeToEvent<KeyPressedEvent>(this, &KeyboardControlSystem::OnKeyPressed);
     }
 

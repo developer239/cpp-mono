@@ -8,7 +8,7 @@
 namespace Loop {
   class EventManager {
     public:
-      std::unique_ptr<Events::Bus> eventBus;
+      std::shared_ptr<Events::Bus> eventBus;
 
       EventManager();
 
