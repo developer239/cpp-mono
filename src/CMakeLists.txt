@@ -1,5 +1,6 @@
 add_subdirectory(apps/first-cpp-mono)
 
+add_subdirectory(packages/ecs)
 add_subdirectory(packages/events)
 add_subdirectory(packages/logger)
 add_subdirectory(packages/loop)
