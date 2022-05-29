@@ -32,7 +32,7 @@ namespace Loop {
 
       void Run();
 
-      void ProcessInput() const;
+      void ProcessInput();
 
       void Update() const;
 

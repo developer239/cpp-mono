@@ -15,8 +15,8 @@ void Loop::Core::Run() {
   }
 }
 
-void Loop::Core::ProcessInput() const {
-  eventManager->HandleInput();
+void Loop::Core::ProcessInput() {
+  eventManager->HandleInput(state, eventManager);
 }
 
 void Loop::Core::Update() const {
