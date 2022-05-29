@@ -30,6 +30,5 @@ void Loop::Core::Update() const {
 }
 
 void Loop::Core::Render() {
-  renderer->Render();
-  app->OnRender();
+  renderer->Render(app.get(), &IApp::OnRender);
 }

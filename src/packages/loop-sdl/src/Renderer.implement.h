@@ -18,6 +18,6 @@ namespace LoopSDL {
 
       void Initialize(int& width, int& height) override;
 
-      void Render() override;
+      void Render(Loop::IApp* myClass, void (Loop::IApp::* OnRender)()) override;
   };
 }
