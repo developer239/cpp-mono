@@ -4,13 +4,13 @@
 #include <utility>
 #include "Tick.h"
 #include "Renderer.h"
-#include "Loop.structs.h"
+#include "Core.structs.h"
 #include "EventManager.h"
 
 namespace Loop {
   class Core {
     public:
-      LoopState state;
+      State state;
 
       std::shared_ptr<Tick> time;
       std::shared_ptr<Renderer> renderer;
