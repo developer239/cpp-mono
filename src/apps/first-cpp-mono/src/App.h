@@ -12,6 +12,8 @@ class App : public Loop::IApp {
 
     void Setup() override;
 
+    void OnInput() override;
+
     void OnUpdate() override;
 
     void OnRender() override;

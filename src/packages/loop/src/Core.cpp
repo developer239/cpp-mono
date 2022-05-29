@@ -17,7 +17,7 @@ void Loop::Core::Run() {
 }
 
 void Loop::Core::ProcessInput() {
-  eventManager->HandleInput(state, eventManager);
+  eventManager->HandleInput(state, app.get(), &IApp::OnInput);
 }
 
 void Loop::Core::Update() const {

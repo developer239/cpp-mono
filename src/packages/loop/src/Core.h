@@ -26,9 +26,8 @@ namespace Loop {
       ) :
           time(std::move(time)),
           renderer(std::move(renderer)),
-          eventManager(std::move(eventManager)) {
-        this->app = std::move(app);
-        this->app->eventManager = this->eventManager;
+          eventManager(std::move(eventManager)),
+          app(std::move(app)) {
       }
 
       ~Core() = default;

@@ -6,6 +6,6 @@
 namespace LoopSDL {
   class EventManagerImplement : public Loop::EventManager {
     public:
-      void HandleInput(Loop::State& state, const std::shared_ptr<Loop::EventManager>& eventManager) override;
+      void HandleInput(Loop::State& state, Loop::IApp* myClass, void (Loop::IApp::* OnInput)()) override;
   };
 }

@@ -6,12 +6,16 @@ App::App() {
   registry = std::make_shared<Registry>();
 }
 
+void App::OnInput() {
+  Logger::Log("App::OnInput()");
+}
+
 void App::Setup() {
   registry->AddSystem<KeyboardControlSystem>();
 }
 
 void App::OnUpdate() {
-  registry->GetSystem<KeyboardControlSystem>().SubscribeToEvents(eventManager->eventBus);
+  registry->GetSystem<KeyboardControlSystem>().SubscribeToEvents();
   registry->Update();
 }
 

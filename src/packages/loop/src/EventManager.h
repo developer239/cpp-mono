@@ -1,9 +1,10 @@
 #pragma once
 
-#include "Core.structs.h"
-
 // TODO: Linker doesn't work here for some reason 🤯
 #include "../../events/src/Bus.h"
+
+#include "IApp.h"
+#include "Core.structs.h"
 
 namespace Loop {
   class EventManager {
@@ -14,6 +15,6 @@ namespace Loop {
 
       void ResetEventBus() const;
 
-      virtual void HandleInput(State& state, const std::shared_ptr<EventManager>& eventManager) = 0;
+      virtual void HandleInput(State& state, IApp* myClass, void (IApp::* OnInput)()) = 0;
   };
 }

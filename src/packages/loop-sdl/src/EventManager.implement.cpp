@@ -7,7 +7,7 @@
 
 void
 LoopSDL::EventManagerImplement::HandleInput(
-    Loop::State& state, const std::shared_ptr<Loop::EventManager>& eventManager
+    Loop::State& state, Loop::IApp* myClass, void (Loop::IApp::* OnInput)()
 ) {
   SDL_Event sdlEvent;
 
@@ -30,6 +30,8 @@ LoopSDL::EventManagerImplement::HandleInput(
         if (sdlEvent.key.keysym.sym == SDLK_ESCAPE) {
           state.isRunning = false;
         }
+
+        (myClass->*OnInput)();
         break;
     }
   }

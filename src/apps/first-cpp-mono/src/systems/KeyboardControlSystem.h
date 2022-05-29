@@ -9,8 +9,8 @@
 
 class KeyboardControlSystem : public System {
   public:
-    void SubscribeToEvents(const std::shared_ptr<Events::Bus>& eventBus) {
-      eventBus->SubscribeToEvent<KeyPressedEvent>(this, &KeyboardControlSystem::OnKeyPressed);
+    void SubscribeToEvents() {
+      Logger::Log("KeyboardControlSystem::SubscribeToEvents()");
     }
 
     void OnKeyPressed(KeyPressedEvent& event) {
