@@ -1,4 +1,4 @@
-set(LIB_NAME ECS)
+set(LIB_NAME EntityComponentSystem)
 
 aux_source_directory(./src SRC_FILES)
 
