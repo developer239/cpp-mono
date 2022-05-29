@@ -3,7 +3,6 @@
 #include "Core.structs.h"
 
 // TODO: Linker doesn't work here for some reason 🤯
-// this happens because this file doesn't have a source
 #include "../../events/src/Bus.h"
 
 namespace Loop {
@@ -11,9 +10,7 @@ namespace Loop {
     public:
       std::unique_ptr<Events::Bus> eventBus;
 
-      EventManager() {
-        eventBus = std::make_unique<Events::Bus>();
-      }
+      EventManager();
 
       void ResetEventBus() const;
 
