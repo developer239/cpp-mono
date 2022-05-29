@@ -1,12 +1,16 @@
-set(LIB_NAME AssetStoreSDL)
+set(LIB_NAME SharedLib)
 
-aux_source_directory(./src SRC_FILES)
-
-add_library(${LIB_NAME} STATIC ${SRC_FILES})
+add_library(${LIB_NAME} STATIC
+        src/components/BoundingBoxComponent.h
+        src/components/TextLabelComponent.h
+        src/asset-store/AssetStore.h
+        src/systems/RenderTextSystem.h
+        src/systems/RenderTextSystem.cpp
+        )
 
 target_include_directories(${LIB_NAME} INTERFACE .)
 
-target_link_libraries(${LIB_NAME} PRIVATE Logger)
+target_link_libraries(${LIB_NAME} PRIVATE ECS)
 
 ## SDL2
 

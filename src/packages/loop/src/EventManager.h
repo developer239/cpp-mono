@@ -3,6 +3,7 @@
 #include "Core.structs.h"
 
 // TODO: Linker doesn't work here for some reason 🤯
+// this happens because this file doesn't have a source
 #include "../../events/src/Bus.h"
 
 namespace Loop {
