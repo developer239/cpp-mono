@@ -1,7 +1,7 @@
 #include "Core.h"
 
-void Loop::Core::Setup() const {
-  renderer->Initialize();
+void Loop::Core::Setup() {
+  renderer->Initialize(state.window.width, state.window.height);
 }
 
 void Loop::Core::Run() {

@@ -28,7 +28,7 @@ namespace Loop {
 
       ~Core() = default;
 
-      void Setup() const;
+      void Setup();
 
       void Run();
 

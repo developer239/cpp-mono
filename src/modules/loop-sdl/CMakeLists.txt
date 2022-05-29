@@ -7,6 +7,7 @@ add_library(${LIB_NAME} STATIC ${SRC_FILES})
 target_include_directories(${LIB_NAME} INTERFACE .)
 
 target_link_libraries(${LIB_NAME} PRIVATE Loop)
+target_link_libraries(${LIB_NAME} PRIVATE Logger)
 
 ## SDL2
 
