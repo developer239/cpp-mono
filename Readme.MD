@@ -1,23 +1,20 @@
 # CPP Monorepo
 
-Collection of C++ projects that share common modules and libraries.
+Collection of C++ projects that I created to learn C++ and CMake.
 
-# Development
+Project  structure is inspired by [nrwl/nx](https://github.com/nrwl/nx). There are 3 folders that developers have to worry about:
 
-## Dependencies
+- `/src/apps` - all the apps that are part of the monorepo
+- `/src/libs` - contains all the libraries that are shared between our applications
+- `/src/packages` - kind of like libraries but can be copy-pasted to another repository if necessary and in the long run should be served as `externals` as external libraries
 
-**General:**
-
-- `$ brew install cmake`
-
-**GUI:**
+### Dependencies
 
 - `$ brew install sdl2`
-- `$ brew install sdl2_image`
 - `$ brew install sdl2_ttf`
-- `$ brew install sdl2_mixer`
 
-**Testing:**
+**Optional:**
 
 - `$ brew install googletest`
-
+- `$ brew install sdl2_image`
+- `$ brew install sdl2_mixer`
