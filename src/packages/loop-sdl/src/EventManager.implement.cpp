@@ -7,7 +7,7 @@
 
 void
 LoopSDL::EventManagerImplement::HandleInput(
-    Loop::State& state, Loop::IApp* appInstance, void (Loop::IApp::* OnInput)()
+    Loop::State& state, Loop::IApp* appInstance, void (Loop::IApp::* OnInput)(int32_t keyCode)
 ) {
   SDL_Event sdlEvent;
 
@@ -31,7 +31,7 @@ LoopSDL::EventManagerImplement::HandleInput(
           state.isRunning = false;
         }
 
-        (appInstance->*OnInput)();
+        (appInstance->*OnInput)(sdlEvent.key.keysym.sym);
         break;
     }
   }

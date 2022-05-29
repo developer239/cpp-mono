@@ -15,6 +15,6 @@ namespace Loop {
 
       void ResetEventBus() const;
 
-      virtual void HandleInput(State& state, IApp* appInstance, void (IApp::* OnInput)()) = 0;
+      virtual void HandleInput(State& state, IApp* appInstance, void (IApp::* OnInput)(int32_t keyCode)) = 0;
   };
 }

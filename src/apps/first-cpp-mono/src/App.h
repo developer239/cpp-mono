@@ -12,7 +12,7 @@ class App : public Loop::IApp {
 
     void Setup() override;
 
-    void OnInput() override;
+    void OnInput(int32_t keyCode) override;
 
     void OnUpdate() override;
 
