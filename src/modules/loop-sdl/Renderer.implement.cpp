@@ -1,4 +1,6 @@
 #include <SDL_ttf.h>
+#include "imgui.h"
+#include "imgui_sdl.h"
 #include "Renderer.implement.h"
 #include "Logger.h"
 
@@ -34,11 +36,28 @@ void LoopSDL::RendererImplement::Initialize(int& width, int& height) {
     Logger::Err("Error creating SDL renderer.");
     return;
   }
+
+  ImGui::CreateContext();
+  ImGuiSDL::Initialize(renderer, width, height);
 }
 
 void LoopSDL::RendererImplement::Render() {
   SDL_SetRenderDrawColor(renderer, 0, 255, 255, 255);
   SDL_RenderClear(renderer);
 
+  ImGui::NewFrame();
+  ImGui::ShowDemoWindow();
+  ImGui::Render();
+  ImGuiSDL::Render(ImGui::GetDrawData());
+
   SDL_RenderPresent(renderer);
+}
+
+LoopSDL::RendererImplement::~RendererImplement() {
+  ImGuiSDL::Deinitialize();
+  ImGui::DestroyContext();
+
+  SDL_DestroyRenderer(renderer);
+  SDL_DestroyWindow(window);
+  SDL_Quit();
 }

@@ -14,11 +14,7 @@ namespace LoopSDL {
       SDL_Window* window;
 
     public:
-      ~RendererImplement() {
-        SDL_DestroyRenderer(renderer);
-        SDL_DestroyWindow(window);
-        SDL_Quit();
-      }
+      ~RendererImplement();
 
       void Initialize(int& width, int& height) override;
 
