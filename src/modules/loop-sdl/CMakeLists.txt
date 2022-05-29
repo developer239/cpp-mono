@@ -13,7 +13,9 @@ target_link_libraries(${LIB_NAME} PRIVATE Loop)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/sdl2)
 
 find_package(SDL2 REQUIRED)
-target_link_libraries(${LIB_NAME} PRIVATE SDL2::Main)
+target_include_directories(${LIB_NAME} INTERFACE ${SDL2_INCLUDE_DIRS})
+target_link_libraries(${LIB_NAME} INTERFACE SDL2::Main)
 
 find_package(SDL2_ttf REQUIRED)
-target_link_libraries(${LIB_NAME} PRIVATE SDL2::TTF)
+target_include_directories(${LIB_NAME} INTERFACE ${SDL2_TTF_INCLUDE_DIRS})
+target_link_libraries(${LIB_NAME} PUBLIC SDL2::TTF)
