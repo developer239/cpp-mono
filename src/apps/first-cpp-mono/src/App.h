@@ -8,6 +8,8 @@ class App : public Loop::IApp {
   public:
     std::shared_ptr<Registry> registry;
 
+    App();
+
     void Setup() override;
 
     void OnUpdate() override;
