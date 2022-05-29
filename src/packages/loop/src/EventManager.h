@@ -1,8 +1,9 @@
 #pragma once
 
 #include "Core.structs.h"
+
 // TODO: Linker doesn't work here for some reason 🤯
-#include "../events/Bus.h"
+#include "../../events/src/Bus.h"
 
 namespace Loop {
   class EventManager {

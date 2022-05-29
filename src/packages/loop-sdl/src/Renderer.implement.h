@@ -3,7 +3,7 @@
 #include <SDL.h>
 #include <iostream>
 #include <thread>
-#include "Renderer.h"
+#include "src/Renderer.h"
 
 namespace LoopSDL {
   class RendererImplement : public Loop::Renderer {

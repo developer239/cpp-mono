@@ -1,6 +1,6 @@
-set(APP_NAME AppCppMono)
+set(APP_NAME AppFirstCppMono)
 
-aux_source_directory(. SRC_FILES)
+aux_source_directory(./src SRC_FILES)
 
 add_executable(${APP_NAME} ${SRC_FILES})
 

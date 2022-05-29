@@ -1,6 +1,6 @@
-set(LIB_NAME Logger)
+set(LIB_NAME Events)
 
-aux_source_directory(. SRC_FILES)
+aux_source_directory(./src SRC_FILES)
 
 add_library(${LIB_NAME} STATIC ${SRC_FILES})
 

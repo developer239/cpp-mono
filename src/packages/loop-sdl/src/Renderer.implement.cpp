@@ -2,7 +2,7 @@
 #include "imgui.h"
 #include "imgui_sdl.h"
 #include "Renderer.implement.h"
-#include "Logger.h"
+#include "src/Logger.h"
 
 void LoopSDL::RendererImplement::Initialize(int& width, int& height) {
   if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {

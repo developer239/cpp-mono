@@ -1,7 +1,7 @@
-#include "Core.h"
-#include "Tick.implement.h"
-#include "Renderer.implement.h"
-#include "EventManager.implement.h"
+#include "src/Core.h"
+#include "src/Tick.implement.h"
+#include "src/Renderer.implement.h"
+#include "src/EventManager.implement.h"
 
 int main() {
   auto time = std::make_shared<LoopSDL::TickImplement>();
