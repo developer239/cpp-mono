@@ -20,5 +20,3 @@ class AssetStore {
 
     TTF_Font *GetFont(const std::string &assetId);
 };
-
-#endif
