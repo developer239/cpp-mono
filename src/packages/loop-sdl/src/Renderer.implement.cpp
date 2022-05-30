@@ -47,10 +47,10 @@ void LoopSDL::RendererImplement::RenderStart() {
 }
 
 void LoopSDL::RendererImplement::RenderEnd() {
-  ImGui::NewFrame();
-  ImGui::ShowDemoWindow();
-  ImGui::Render();
-  ImGuiSDL::Render(ImGui::GetDrawData());
+//  ImGui::NewFrame();
+//  ImGui::ShowDemoWindow();
+//  ImGui::Render();
+//  ImGuiSDL::Render(ImGui::GetDrawData());
 
   SDL_RenderPresent(renderer);
 }
