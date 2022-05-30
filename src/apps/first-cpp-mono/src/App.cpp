@@ -1,18 +1,9 @@
 #include "App.h"
 
 #include <utility>
-#include "src/Logger.h"
 #include "systems/KeyboardControlSystem.h"
 #include "components/TextLabelComponent.h"
 #include "systems/RenderTextSystem.h"
-
-App::App(
-    std::shared_ptr<Loop::Tick> time, std::shared_ptr<Loop::Renderer> renderer,
-    std::shared_ptr<Loop::EventManager> eventManager
-) : Core(std::move(time), std::move(renderer), std::move(eventManager)) {
-  registry = std::make_shared<Registry>();
-  assetStore = std::make_shared<AssetStore>();
-}
 
 void App::OnSetup() {
   registry->AddSystem<KeyboardControlSystem>();

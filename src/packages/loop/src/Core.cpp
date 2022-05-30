@@ -1,11 +1,13 @@
 #include "Core.h"
 
+#include <utility>
+
 Loop::Core::Core(
-    std::shared_ptr<Tick> time, std::shared_ptr<Renderer> renderer, std::shared_ptr<EventManager> eventManager
-) :
-    time(std::move(time)),
-    renderer(std::move(renderer)),
-    eventManager(std::move(eventManager)) {
+    std::shared_ptr<Tick> time, Renderer* renderer, std::shared_ptr<EventManager> eventManager
+) {
+  this->time = std::move(time);
+  this->renderer = renderer;
+  this->eventManager = std::move(eventManager);
 }
 
 void Loop::Core::Setup() {
