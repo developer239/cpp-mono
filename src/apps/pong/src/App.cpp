@@ -21,7 +21,7 @@ void App::OnInput(SDL_Event event) {
   }
 }
 
-void App::OnUpdate() {;
+void App::OnUpdate() {
   // update ball and paddle position
   ball.x += ball.velX * time->deltaTime;
   ball.y += ball.velY * time->deltaTime;
@@ -33,16 +33,19 @@ void App::OnUpdate() {;
     ball.x = 0;
     ball.velX = -ball.velX;
   }
+
   // If ball is lower than the left wall, force the position to be zero before flipping the velocity
   if (ball.y <= 0) {
     ball.y = 0;
     ball.velY = -ball.velY;
   }
+
   // If ball x plus its width is greater than window width, force position to be at the right of the screen
   if (ball.x + ball.width > state.window.width) {
     ball.x = state.window.width - ball.width;
     ball.velX = -ball.velX;
   }
+
   // If ball y plus its height is greater than window height, force position to be at the bottom of the screen
   if (ball.x + ball.width > state.window.width) {
     ball.x = state.window.width - ball.width;

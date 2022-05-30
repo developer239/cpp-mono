@@ -57,6 +57,7 @@ class MovementSystem : public System {
           }
         }
 
+        // TODO: this should probably live in a different system
         // check if game over
         if (rigidBodyComponent.position.y + rigidBodyComponent.height > state.window.height) {
           if (entity.HasTag("Ball")) {
