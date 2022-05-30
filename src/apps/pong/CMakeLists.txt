@@ -5,7 +5,7 @@ set(SOURCES
         src/main.cpp
         src/App.cpp
         src/App.h
-        )
+        src/entities/GameObject.h)
 
 add_executable(${APP_NAME} ${SOURCES})
 
