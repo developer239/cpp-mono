@@ -1,3 +1,4 @@
+add_subdirectory(apps/pong)
 add_subdirectory(apps/pong-ecs)
 
 add_subdirectory(packages/asset-store-sdl)

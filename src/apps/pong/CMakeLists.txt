@@ -1,13 +1,11 @@
-set(APP_NAME AppPongECS)
-set(APP_FOLDER_NAME pong-ecs)
+set(APP_NAME AppPong)
+set(APP_FOLDER_NAME pong)
 
 set(SOURCES
-        src/components/TextLabelComponent.h
-        src/events/KeyPressedEvent.h
-        src/systems/KeyboardControlSystem.h
-        src/systems/RenderTextSystem.h
         src/main.cpp
-        src/App.cpp src/App.h)
+        src/App.cpp
+        src/App.h
+        )
 
 add_executable(${APP_NAME} ${SOURCES})
 
@@ -16,8 +14,6 @@ file(COPY assets DESTINATION ${CMAKE_BINARY_DIR}/src/apps/${APP_FOLDER_NAME})
 target_link_libraries(${APP_NAME} PRIVATE Loop)
 target_link_libraries(${APP_NAME} PRIVATE LoopSDL)
 target_link_libraries(${APP_NAME} PRIVATE AssetStoreSDL)
-target_link_libraries(${APP_NAME} PRIVATE EntityComponentSystem)
-target_link_libraries(${APP_NAME} PRIVATE Events)
 target_link_libraries(${APP_NAME} PRIVATE Logger)
 
 target_include_directories(${APP_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/externals)
