@@ -23,7 +23,15 @@ namespace Loop {
           std::shared_ptr<Renderer> renderer,
           std::shared_ptr<EventManager> eventManager,
           std::shared_ptr<IApp> app
-      );
+      ) :
+          time(std::move(time)),
+          eventManager(std::move(eventManager)) {
+        this->renderer = std::move(renderer);
+        this->renderer->state = &this->state;
+
+        this->app = std::move(app);
+        this->app->eventBus = this->eventManager->eventBus;
+      }
 
       ~Core() = default;
 
