@@ -2,10 +2,7 @@ set(APP_NAME AppPongECS)
 set(APP_FOLDER_NAME pong-ecs)
 
 set(SOURCES
-        src/components/TextLabelComponent.h
         src/events/KeyPressedEvent.h
-        src/systems/KeyboardControlSystem.h
-        src/systems/RenderTextSystem.h
         src/main.cpp
         src/App.cpp src/App.h)
 
