@@ -1,8 +1,16 @@
 #include "Core.h"
 
+Loop::Core::Core(
+    std::shared_ptr<Tick> time, std::shared_ptr<Renderer> renderer, std::shared_ptr<EventManager> eventManager
+) :
+    time(std::move(time)),
+    renderer(std::move(renderer)),
+    eventManager(std::move(eventManager)) {
+}
+
 void Loop::Core::Setup() {
   renderer->Initialize(state.window.width, state.window.height);
-  app->Setup();
+  OnSetup();
 }
 
 void Loop::Core::Run() {
@@ -17,18 +25,21 @@ void Loop::Core::Run() {
 }
 
 void Loop::Core::ProcessInput() {
-  eventManager->HandleInput(state, app.get(), &IApp::OnInput);
+  eventManager->HandleInput();
+  OnInput();
 }
 
-void Loop::Core::Update() const {
+void Loop::Core::Update() {
   time->UpdateDeltaTime();
   time->UpdateMsPreviousFrame();
 
   eventManager->ResetEventBus();
 
-  app->OnUpdate();
+  OnUpdate();
 }
 
 void Loop::Core::Render() {
-  renderer->Render(app.get(), &IApp::OnRender);
+  renderer->RenderStart();
+  OnRender();
+  renderer->RenderEnd();
 }

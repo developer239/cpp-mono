@@ -1,19 +1,20 @@
 #include "App.h"
+
+#include <utility>
 #include "src/Logger.h"
 #include "systems/KeyboardControlSystem.h"
 #include "components/TextLabelComponent.h"
 #include "systems/RenderTextSystem.h"
 
-App::App() {
+App::App(
+    std::shared_ptr<Loop::Tick> time, std::shared_ptr<Loop::Renderer> renderer,
+    std::shared_ptr<Loop::EventManager> eventManager
+) : Core(std::move(time), std::move(renderer), std::move(eventManager)) {
   registry = std::make_shared<Registry>();
   assetStore = std::make_shared<AssetStore>();
 }
 
-void App::OnInput(int32_t keyCode) {
-  eventBus->EmitEvent<KeyPressedEvent>(keyCode);
-}
-
-void App::Setup() {
+void App::OnSetup() {
   registry->AddSystem<KeyboardControlSystem>();
   registry->AddSystem<RenderTextSystem>();
 
@@ -23,13 +24,17 @@ void App::Setup() {
   hello.AddComponent<TextLabelComponent>(glm::vec2(20, 20), "Hello");
 }
 
+void App::OnInput() {
+  eventManager->eventBus->EmitEvent<KeyPressedEvent>(123);
+}
+
 void App::OnUpdate() {
-  registry->GetSystem<KeyboardControlSystem>().SubscribeToEvents(eventBus);
+  registry->GetSystem<KeyboardControlSystem>().SubscribeToEvents(eventManager->eventBus);
   registry->Update();
 }
 
-void App::OnRender(Loop::State state) {
-//  registry->GetSystem<RenderTextSystem>().Update(renderer, assetStore);
+void App::OnRender() {
+  //  registry->GetSystem<RenderTextSystem>().Update(renderer, assetStore);
 
   Logger::Log("Is running: " + std::to_string(state.isRunning));
 

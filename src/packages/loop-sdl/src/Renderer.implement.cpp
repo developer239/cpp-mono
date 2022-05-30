@@ -41,12 +41,12 @@ void LoopSDL::RendererImplement::Initialize(int& width, int& height) {
   ImGuiSDL::Initialize(renderer, width, height);
 }
 
-void LoopSDL::RendererImplement::Render(Loop::IApp* appInstance, void (Loop::IApp::* OnRender)(Loop::State state)) {
+void LoopSDL::RendererImplement::RenderStart() {
   SDL_SetRenderDrawColor(renderer, 0, 255, 255, 255);
   SDL_RenderClear(renderer);
+}
 
-  (appInstance->*OnRender)(state);
-
+void LoopSDL::RendererImplement::RenderEnd() {
   ImGui::NewFrame();
   ImGui::ShowDemoWindow();
   ImGui::Render();

@@ -3,7 +3,6 @@
 // TODO: Linker doesn't work here for some reason 🤯
 #include "../../events/src/Bus.h"
 
-#include "IApp.h"
 #include "Core.structs.h"
 
 namespace Loop {
@@ -15,6 +14,6 @@ namespace Loop {
 
       void ResetEventBus() const;
 
-      virtual void HandleInput(State& state, IApp* appInstance, void (IApp::* OnInput)(int32_t keyCode)) = 0;
+      virtual void HandleInput() = 0;
   };
 }

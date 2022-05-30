@@ -1,4 +1,3 @@
-#include "src/Core.h"
 #include "src/Tick.implement.h"
 #include "src/Renderer.implement.h"
 #include "src/EventManager.implement.h"
@@ -9,10 +8,8 @@ int main() {
   auto renderer = std::make_shared<LoopSDL::RendererImplement>();
   auto eventManager = std::make_shared<LoopSDL::EventManagerImplement>();
 
-  auto app = std::make_shared<App>();
-
-  Loop::Core loop(time, renderer, eventManager, app);
-  loop.Run();
+  auto app = std::make_shared<App>(time, renderer, eventManager);
+  app->Run();
 
   return 0;
 }

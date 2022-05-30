@@ -1,22 +1,25 @@
 #pragma once
 
 #include <iostream>
-#include "src/IApp.h"
+#include "src/Core.h"
 #include "src/Registry.h"
 #include "src/AssetStore.h"
 
-class App : public Loop::IApp {
+class App : public Loop::Core {
   public:
     std::shared_ptr<Registry> registry;
     std::shared_ptr<AssetStore> assetStore;
 
-    App();
+    App(
+        std::shared_ptr<Loop::Tick> time, std::shared_ptr<Loop::Renderer> renderer,
+        std::shared_ptr<Loop::EventManager> eventManager
+    );
 
-    void Setup() override;
+    void OnSetup() override;
 
-    void OnInput(int32_t keyCode) override;
+    void OnInput() override;
 
     void OnUpdate() override;
 
-    void OnRender(Loop::State state) override;
+    void OnRender() override;
 };
