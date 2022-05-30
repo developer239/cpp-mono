@@ -1,5 +1,8 @@
 #pragma once
 
+#include <SDL.h>
+#include "src/Renderer.h"
+
 struct GameObject {
   float x;
   float y;
@@ -22,5 +25,16 @@ struct GameObject {
     this->height = height;
     this->velX = vel_x;
     this->velY = vel_y;
+  }
+
+  void Render(Loop::Renderer& renderer) const {
+    SDL_Rect rect = {
+        (int) this->x,
+        (int) this->y,
+        (int) this->width,
+        (int) this->height
+    };
+    SDL_SetRenderDrawColor(renderer.renderer, 255, 255, 255, 255);
+    SDL_RenderFillRect(renderer.renderer, &rect);
   }
 };
