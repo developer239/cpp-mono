@@ -1,4 +1,4 @@
-add_subdirectory(apps/first-cpp-mono)
+add_subdirectory(apps/pong-ecs)
 
 add_subdirectory(packages/asset-store-sdl)
 add_subdirectory(packages/ecs)

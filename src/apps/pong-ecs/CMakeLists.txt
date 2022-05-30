@@ -1,4 +1,5 @@
-set(APP_NAME AppFirstCppMono)
+set(APP_NAME AppPongECS)
+set(APP_FOLDER_NAME pong-ecs)
 
 set(SOURCES
         src/components/TextLabelComponent.h
@@ -10,7 +11,7 @@ set(SOURCES
 
 add_executable(${APP_NAME} ${SOURCES})
 
-file(COPY assets DESTINATION ${CMAKE_BINARY_DIR}/src/apps/first-cpp-mono)
+file(COPY assets DESTINATION ${CMAKE_BINARY_DIR}/src/apps/${APP_FOLDER_NAME})
 
 target_link_libraries(${APP_NAME} PRIVATE Loop)
 target_link_libraries(${APP_NAME} PRIVATE LoopSDL)
