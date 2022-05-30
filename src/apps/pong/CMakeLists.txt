@@ -16,8 +16,6 @@ target_link_libraries(${APP_NAME} PRIVATE LoopSDL)
 target_link_libraries(${APP_NAME} PRIVATE AssetStoreSDL)
 target_link_libraries(${APP_NAME} PRIVATE Logger)
 
-target_include_directories(${APP_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/externals)
-
 ## SDL2
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/sdl2)
