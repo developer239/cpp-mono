@@ -3,10 +3,10 @@
 #include <utility>
 
 Loop::Core::Core(
-    std::shared_ptr<Tick> time, Renderer* renderer, std::shared_ptr<EventManager> eventManager
+    std::shared_ptr<Tick> time, std::shared_ptr<Renderer> renderer, std::shared_ptr<EventManager> eventManager
 ) {
   this->time = std::move(time);
-  this->renderer = renderer;
+  this->renderer = std::move(renderer);
   this->eventManager = std::move(eventManager);
 }
 

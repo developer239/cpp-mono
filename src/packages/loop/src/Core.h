@@ -13,12 +13,12 @@ namespace Loop {
       State state;
 
       std::shared_ptr<Tick> time;
-      Renderer* renderer;
+      std::shared_ptr<Renderer> renderer;
       std::shared_ptr<EventManager> eventManager;
 
       explicit Core(
           std::shared_ptr<Tick> time,
-          Renderer* renderer,
+          std::shared_ptr<Renderer> renderer,
           std::shared_ptr<EventManager> eventManager
       );
 

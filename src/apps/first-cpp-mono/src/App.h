@@ -11,8 +11,8 @@ class App : public Loop::Core {
     std::shared_ptr<AssetStore> assetStore;
 
     App(
-        std::shared_ptr<Loop::Tick> time, Loop::Renderer* renderer, std::shared_ptr<Loop::EventManager> eventManager
-    ) : Core(std::move(time), renderer, std::move(eventManager)) {
+        std::shared_ptr<Loop::Tick> time, std::shared_ptr<Loop::Renderer> renderer, std::shared_ptr<Loop::EventManager> eventManager
+    ) : Core(std::move(time), std::move(renderer), std::move(eventManager)) {
       registry = std::make_shared<Registry>();
       assetStore = std::make_shared<AssetStore>();
     }
