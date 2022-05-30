@@ -25,8 +25,10 @@ namespace Loop {
           std::shared_ptr<IApp> app
       ) :
           time(std::move(time)),
-          renderer(std::move(renderer)),
           eventManager(std::move(eventManager)) {
+        this->renderer = std::move(renderer);
+        this->renderer->state = this->state;
+
         this->app = std::move(app);
         this->app->eventBus = this->eventManager->eventBus;
       }

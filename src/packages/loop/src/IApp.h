@@ -2,6 +2,7 @@
 
 // TODO: Linker doesn't work here for some reason 🤯
 #include "../../events/src/Bus.h"
+#include "Core.structs.h"
 
 namespace Loop {
   class IApp {
@@ -14,6 +15,6 @@ namespace Loop {
 
       virtual void OnUpdate() = 0;
 
-      virtual void OnRender() = 0;
+      virtual void OnRender(State state) = 0;
   };
 }
