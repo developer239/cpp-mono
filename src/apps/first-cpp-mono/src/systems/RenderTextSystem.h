@@ -11,7 +11,7 @@ class RenderTextSystem : public System {
       RequireComponent<TextLabelComponent>();
     }
 
-    void Update(SDL_Renderer* renderer, std::unique_ptr<AssetStore>& assetStore) {
+    void Update(SDL_Renderer* renderer, std::shared_ptr<AssetStore>& assetStore) {
       for (auto entity: GetSystemEntities()) {
         const auto textLabelComponent = entity.GetComponent<TextLabelComponent>();
 

@@ -34,9 +34,5 @@ void App::OnUpdate() {
 }
 
 void App::OnRender() {
-  //  registry->GetSystem<RenderTextSystem>().Update(renderer, assetStore);
-
-  Logger::Log("Is running: " + std::to_string(state.isRunning));
-
-  SDL_Delay(100);
+  registry->GetSystem<RenderTextSystem>().Update(renderer->renderer, assetStore);
 }
