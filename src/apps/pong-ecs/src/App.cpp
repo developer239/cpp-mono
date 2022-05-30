@@ -2,8 +2,10 @@
 #include "events/KeyPressedEvent.h"
 #include "components/RigidBodyComponent.h"
 #include "systems/RenderRigidBodiesSystem.h"
+#include "systems/MovementSystem.h"
 
 void App::OnSetup() {
+  registry->AddSystem<MovementSystem>();
   registry->AddSystem<RenderRigidBodiesSystem>();
 
   Entity ball = registry->CreateEntity();
@@ -34,5 +36,6 @@ void App::OnUpdate() {
 }
 
 void App::OnRender() {
+  registry->GetSystem<MovementSystem>().Update(time->deltaTime);
   registry->GetSystem<RenderRigidBodiesSystem>().Update(renderer->renderer);
 }
