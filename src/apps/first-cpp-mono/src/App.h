@@ -3,10 +3,12 @@
 #include <iostream>
 #include "src/IApp.h"
 #include "src/Registry.h"
+#include "src/AssetStore.h"
 
 class App : public Loop::IApp {
   public:
     std::shared_ptr<Registry> registry;
+    std::shared_ptr<AssetStore> assetStore;
 
     App();
 
