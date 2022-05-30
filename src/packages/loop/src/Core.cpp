@@ -25,8 +25,10 @@ void Loop::Core::Run() {
 }
 
 void Loop::Core::ProcessInput() {
-  eventManager->HandleInput();
-  OnInput();
+  auto keyCode = eventManager->HandleInput(state);
+  if (keyCode != 1) {
+    OnInput(keyCode);
+  }
 }
 
 void Loop::Core::Update() {

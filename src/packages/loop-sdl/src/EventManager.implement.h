@@ -6,6 +6,6 @@
 namespace LoopSDL {
   class EventManagerImplement : public Loop::EventManager {
     public:
-      void HandleInput() override;
+      int32_t HandleInput(Loop::State& state) override;
   };
 }

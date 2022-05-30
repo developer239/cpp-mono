@@ -5,7 +5,7 @@
 #include "imgui_impl_sdl.h"
 #include "EventManager.implement.h"
 
-void LoopSDL::EventManagerImplement::HandleInput() {
+int32_t LoopSDL::EventManagerImplement::HandleInput(Loop::State& state) {
   SDL_Event sdlEvent;
 
   while (SDL_PollEvent(&sdlEvent)) {
@@ -21,13 +21,14 @@ void LoopSDL::EventManagerImplement::HandleInput() {
 
     switch (sdlEvent.type) {
       case SDL_QUIT:
-//        state.isRunning = false;
+        state.isRunning = false;
         break;
       case SDL_KEYDOWN:
         if (sdlEvent.key.keysym.sym == SDLK_ESCAPE) {
-//          state.isRunning = false;
+          state.isRunning = false;
         }
-        break;
+
+        return sdlEvent.key.keysym.sym;
     }
   }
 }

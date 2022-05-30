@@ -14,6 +14,6 @@ namespace Loop {
 
       void ResetEventBus() const;
 
-      virtual void HandleInput() = 0;
+      virtual int32_t HandleInput(Loop::State& state) = 0;
   };
 }
