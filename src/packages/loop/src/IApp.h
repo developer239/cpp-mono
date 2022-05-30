@@ -15,6 +15,6 @@ namespace Loop {
 
       virtual void OnUpdate() = 0;
 
-      virtual void OnRender(State& state) = 0;
+      virtual void OnRender(State state) = 0;
   };
 }
