@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.22)
+cmake_minimum_required(VERSION 3.19)
 project(CppMono LANGUAGES CXX VERSION 0.0.1)
 
 set(CMAKE_CXX_STANDARD 20)
