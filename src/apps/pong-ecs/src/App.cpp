@@ -3,10 +3,12 @@
 #include "components/RigidBodyComponent.h"
 #include "systems/RenderRigidBodiesSystem.h"
 #include "systems/MovementSystem.h"
+#include "systems/KeyboardControlSystem.h"
 
 void App::OnSetup() {
   registry->AddSystem<MovementSystem>();
   registry->AddSystem<RenderRigidBodiesSystem>();
+  registry->AddSystem<KeyboardControlSystem>();
 
   Entity ball = registry->CreateEntity();
   ball.Tag("Ball");
@@ -19,6 +21,12 @@ void App::OnSetup() {
 
   Entity paddle = registry->CreateEntity();
   ball.Tag("Paddle");
+  paddle.AddComponent<KeyboardControlledComponent>(
+      glm::vec2(0, 0),
+      glm::vec2(400, 0),
+      glm::vec2(0, 0),
+      glm::vec2(-400, 0)
+  );
   paddle.AddComponent<RigidBodyComponent>(
       100,
       20,
@@ -32,6 +40,7 @@ void App::OnInput(SDL_Event sdlEvent) {
 }
 
 void App::OnUpdate() {
+  registry->GetSystem<KeyboardControlSystem>().SubscribeToEvents(eventManager->eventBus);
   registry->Update();
 }
 

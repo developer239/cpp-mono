@@ -6,10 +6,11 @@ set(SOURCES
         src/components/RigidBodyComponent.h
         src/events/CollisionEvent.h
         src/events/KeyPressedEvent.h
+        src/systems/KeyboardControlSystem.h
         src/systems/RenderRigidBodiesSystem.h
         src/systems/MovementSystem.h
         src/main.cpp
-        src/App.cpp src/App.h)
+        src/App.cpp src/App.h src/components/KeyboardControlledComponent.h)
 
 add_executable(${APP_NAME} ${SOURCES})
 
