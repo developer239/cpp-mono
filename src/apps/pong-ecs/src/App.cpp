@@ -45,6 +45,6 @@ void App::OnUpdate() {
 }
 
 void App::OnRender() {
-  registry->GetSystem<MovementSystem>().Update(time->deltaTime);
+  registry->GetSystem<MovementSystem>().Update(time->deltaTime, state);
   registry->GetSystem<RenderRigidBodiesSystem>().Update(renderer->renderer);
 }
