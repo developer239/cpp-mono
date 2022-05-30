@@ -28,7 +28,7 @@ void App::OnUpdate() {
   registry->Update();
 }
 
-void App::OnRender(Loop::State state) {
+void App::OnRender(Loop::State& state) {
 //  registry->GetSystem<RenderTextSystem>().Update(renderer, assetStore);
 
   Logger::Log("Is running: " + std::to_string(state.isRunning));

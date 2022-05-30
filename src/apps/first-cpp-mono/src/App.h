@@ -18,5 +18,5 @@ class App : public Loop::IApp {
 
     void OnUpdate() override;
 
-    void OnRender(Loop::State state) override;
+    void OnRender(Loop::State& state) override;
 };
