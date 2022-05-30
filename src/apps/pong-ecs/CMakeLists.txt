@@ -2,7 +2,10 @@ set(APP_NAME AppPongECS)
 set(APP_FOLDER_NAME pong-ecs)
 
 set(SOURCES
+        src/components/BoxColliderComponent.h
+        src/components/RigidBodyComponent.h
         src/events/KeyPressedEvent.h
+        src/systems/RenderRigidBodiesSystem.h
         src/main.cpp
         src/App.cpp src/App.h)
 
