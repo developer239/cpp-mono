@@ -42,7 +42,7 @@ void LoopSDL::RendererImplement::Initialize(int& width, int& height) {
 }
 
 void LoopSDL::RendererImplement::RenderStart() {
-  SDL_SetRenderDrawColor(renderer, 0, 255, 255, 255);
+  SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
   SDL_RenderClear(renderer);
 }
 
