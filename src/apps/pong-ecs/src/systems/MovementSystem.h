@@ -18,14 +18,14 @@ class MovementSystem : public System {
       Entity a = event.a;
       Entity b = event.b;
 
-      Entity* ball;
+      std::unique_ptr<Entity> ball;
 
       if (a.HasTag("Ball")) {
-        ball = &a;
+        ball = std::make_unique<Entity>(a);
       }
 
       if (b.HasTag("Ball")) {
-        ball = &b;
+        ball = std::make_unique<Entity>(b);
       }
 
       auto& rigidBodyComponent = ball->GetComponent<RigidBodyComponent>();
