@@ -43,5 +43,5 @@ void Loop::Core::Update() const {
 }
 
 void Loop::Core::Render() {
-  renderer->Render(app.get(), &IRenderable::OnRender);
+  renderer->Render(app.get(), &IApp::OnRender);
 }
