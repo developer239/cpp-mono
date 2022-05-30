@@ -1,5 +1,7 @@
 #pragma once
 
+#include <SDL.h>
+
 // TODO: Linker doesn't work here for some reason 🤯
 #include "../../events/src/Bus.h"
 
@@ -14,6 +16,7 @@ namespace Loop {
 
       void ResetEventBus() const;
 
-      virtual int32_t HandleInput(Loop::State& state) = 0;
+      // TODO: create interface for SDL_Event
+      virtual SDL_Event HandleInput(Loop::State& state) = 0;
   };
 }

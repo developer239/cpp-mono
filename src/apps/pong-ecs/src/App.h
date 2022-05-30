@@ -19,7 +19,7 @@ class App : public Loop::Core {
 
     void OnSetup() override;
 
-    void OnInput(int32_t keyCode) override;
+    void OnInput(SDL_Event keyCode) override;
 
     void OnUpdate() override;
 

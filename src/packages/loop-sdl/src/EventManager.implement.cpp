@@ -5,7 +5,7 @@
 #include "imgui_impl_sdl.h"
 #include "EventManager.implement.h"
 
-int32_t LoopSDL::EventManagerImplement::HandleInput(Loop::State& state) {
+SDL_Event LoopSDL::EventManagerImplement::HandleInput(Loop::State& state) {
   SDL_Event sdlEvent;
 
   while (SDL_PollEvent(&sdlEvent)) {
@@ -28,7 +28,7 @@ int32_t LoopSDL::EventManagerImplement::HandleInput(Loop::State& state) {
           state.isRunning = false;
         }
 
-        return sdlEvent.key.keysym.sym;
+        return sdlEvent;
     }
   }
 }

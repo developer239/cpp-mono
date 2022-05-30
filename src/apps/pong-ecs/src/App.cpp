@@ -15,8 +15,8 @@ void App::OnSetup() {
   hello.AddComponent<TextLabelComponent>(glm::vec2(20, 20), "Hello");
 }
 
-void App::OnInput(int32_t keyCode) {
-  eventManager->eventBus->EmitEvent<KeyPressedEvent>(keyCode);
+void App::OnInput(SDL_Event sdlEvent) {
+  eventManager->eventBus->EmitEvent<KeyPressedEvent>(sdlEvent.key.keysym.sym);
 }
 
 void App::OnUpdate() {

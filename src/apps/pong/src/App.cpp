@@ -4,7 +4,7 @@ void App::OnSetup() {
 
 }
 
-void App::OnInput(int32_t keyCode) {
+void App::OnInput(SDL_Event keyCode) {
 
 }
 

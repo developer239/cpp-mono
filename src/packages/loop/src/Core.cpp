@@ -27,9 +27,9 @@ void Loop::Core::Run() {
 }
 
 void Loop::Core::ProcessInput() {
-  auto keyCode = eventManager->HandleInput(state);
-  if (keyCode != 1) {
-    OnInput(keyCode);
+  auto sdlEvent = eventManager->HandleInput(state);
+  if (sdlEvent.key.keysym.sym != 0) {
+    OnInput(sdlEvent);
   }
 }
 

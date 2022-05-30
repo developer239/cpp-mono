@@ -36,7 +36,8 @@ namespace Loop {
 
       virtual void OnSetup() = 0;
 
-      virtual void OnInput(int32_t keyCode) = 0;
+      // TODO: create interface for SDL_Event
+      virtual void OnInput(SDL_Event keyCode) = 0;
 
       virtual void OnUpdate() = 0;
 
