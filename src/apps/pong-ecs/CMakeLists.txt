@@ -20,7 +20,7 @@ target_link_libraries(${APP_NAME} PRIVATE Events)
 target_link_libraries(${APP_NAME} PRIVATE Logger)
 target_link_libraries(${APP_NAME} PRIVATE AssetStoreSDL)
 
-target_include_directories(${APP_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/externals ${LUA_INCLUDE_DIR})
+target_include_directories(${APP_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/externals)
 
 ## SDL2
 
