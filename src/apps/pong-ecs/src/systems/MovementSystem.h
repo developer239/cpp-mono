@@ -15,6 +15,21 @@ class MovementSystem : public System {
     }
 
     void OnCollision(CollisionEvent& event) {
+      Entity a = event.a;
+      Entity b = event.b;
+
+      Entity* ball;
+
+      if (a.HasTag("Ball")) {
+        ball = &a;
+      }
+
+      if (b.HasTag("Ball")) {
+        ball = &b;
+      }
+
+      auto& rigidBodyComponent = ball->GetComponent<RigidBodyComponent>();
+      rigidBodyComponent.velocity.y = -rigidBodyComponent.velocity.y;
     }
 
     void Update(double deltaTime, Loop::State& state) {
@@ -22,6 +37,7 @@ class MovementSystem : public System {
         auto& rigidBodyComponent = entity.GetComponent<RigidBodyComponent>();
 
         // update entity position
+
         rigidBodyComponent.position.x += rigidBodyComponent.velocity.x * deltaTime;
         rigidBodyComponent.position.y += rigidBodyComponent.velocity.y * deltaTime;
 

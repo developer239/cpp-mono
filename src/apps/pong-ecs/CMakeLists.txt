@@ -6,6 +6,7 @@ set(SOURCES
         src/components/RigidBodyComponent.h
         src/events/CollisionEvent.h
         src/events/KeyPressedEvent.h
+        src/systems/CollisionSystem.h
         src/systems/KeyboardControlSystem.h
         src/systems/RenderRigidBodiesSystem.h
         src/systems/MovementSystem.h
