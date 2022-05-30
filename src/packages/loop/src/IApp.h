@@ -3,9 +3,10 @@
 // TODO: Linker doesn't work here for some reason 🤯
 #include "../../events/src/Bus.h"
 #include "Core.structs.h"
+#include "IRenderable.h"
 
 namespace Loop {
-  class IApp {
+  class IApp: public IRenderable {
     public:
       std::shared_ptr<Events::Bus> eventBus;
 

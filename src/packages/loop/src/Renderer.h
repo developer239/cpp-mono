@@ -1,6 +1,7 @@
 #pragma once
 
-#include "IApp.h"
+#include "Core.structs.h"
+#include "IRenderable.h"
 
 namespace Loop {
   class Renderer {
@@ -9,6 +10,6 @@ namespace Loop {
 
       virtual void Initialize(int& width, int& height) = 0;
 
-      virtual void Render(IApp* appInstance, void (IApp::* OnRender)(State& state)) = 0;
+      virtual void Render(IRenderable* appInstance, void (IRenderable::* OnRender)(State& state)) = 0;
   };
 }
