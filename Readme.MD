@@ -26,9 +26,9 @@ Project  structure is inspired by [nrwl/nx](https://github.com/nrwl/nx). There a
 
 Minimal single player _pong_ game. It is supposed to test show how to create minimal application with game loop using `packages/loop-sdl`.  
 
-### Pong
+### Pong ECS
 
-Minimal single player _pong_ game that is same as `apps/pong` but uses `packages/ecs` to show how to write applications with entity, component, system architecture in mind.
+Minimal single player _pong_ game same as `apps/pong` but uses `packages/ecs` to demonstrate how to write applications with entity, component, system architecture in mind.
 
 ![](preview-game.gif)
 
@@ -42,7 +42,7 @@ Data oriented entity, component, system helpers. Mostly provided by [Pikuma 2D G
 
 ### Loop
 
-This package is supposed to make it easy to create game loop. You need extend and provide Tick, Renderer and EventManager classes. Unfortunately, it only works with SDL right now because I didn't implement renderer abstraction yet. 
+This package is supposed to make it easy to create game loop. You need to provide Tick, Renderer and EventManager classes implementation. Unfortunately, it only works with SDL right now because I didn't implement renderer abstraction yet. 
 
 ### Loop SDL
 
