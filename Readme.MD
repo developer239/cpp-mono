@@ -9,6 +9,7 @@ Project  structure is inspired by [nrwl/nx](https://github.com/nrwl/nx). There a
 
 **Dependencies**
 
+- `$ brew install cmake`
 - `$ brew install sdl2`
 - `$ brew install sdl2_ttf`
 - `$ brew install sdl2_image`
