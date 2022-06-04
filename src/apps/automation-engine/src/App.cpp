@@ -20,19 +20,22 @@ void App::OnSetup() {
   registry->AddSystem<DetectionSystem>();
   registry->AddSystem<RenderBoundingBoxSystem>();
   registry->AddSystem<CollisionSystem>();
-  registry->AddSystem<PlayerDecisionSystem>(appState);
+  registry->AddSystem<PlayerDecisionSystem>();
 
   Entity areaTop = registry->CreateEntity();
   areaTop.Tag("AreaTop");
-  areaTop.AddComponent<BoundingBoxComponent>(175, 230, 140, 100);
+  areaTop.Group("Area");
+  areaTop.AddComponent<BoundingBoxComponent>(140, 230, 140, 110);
 
   Entity areaMid = registry->CreateEntity();
   areaMid.Tag("AreaMid");
-  areaMid.AddComponent<BoundingBoxComponent>(200, 358, 150, 10);
+  areaMid.Group("Area");
+  areaMid.AddComponent<BoundingBoxComponent>(170, 358, 150, 7);
 
   Entity areaBottom = registry->CreateEntity();
   areaBottom.Tag("AreaBottom");
-  areaBottom.AddComponent<BoundingBoxComponent>(200, 426, 150, 10);
+  areaBottom.Group("Area");
+  areaBottom.AddComponent<BoundingBoxComponent>(170, 426, 150, 7);
 }
 
 void App::OnInput(SDL_Event sdlEvent) {
@@ -41,12 +44,12 @@ void App::OnInput(SDL_Event sdlEvent) {
 
 void App::OnUpdate() {
   registry->GetSystem<KeyboardControlSystem>().SubscribeToEvents(eventManager->eventBus);
-  registry->GetSystem<PlayerDecisionSystem>().SubscribeToEvents(eventManager->eventBus);
   registry->Update();
 
   registry->GetSystem<ScreenSystem>().Update(screen);
   registry->GetSystem<DetectionSystem>().Update(screen, appState, registry);
   registry->GetSystem<CollisionSystem>().Update(appState, eventManager->eventBus);
+  registry->GetSystem<PlayerDecisionSystem>().Update(registry, appState);
 }
 
 void App::OnRender() {

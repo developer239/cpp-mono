@@ -2,50 +2,93 @@
 
 #include "src/Keyboard.h"
 #include "../events/CollisionEvent.h"
+#include "../components/BoundingBoxComponent.h"
+
+struct IndexPositionMap {
+  int index;
+  int positionX;
+};
+
+int MIN_DELAY = 350;
 
 class PlayerDecisionSystem : public System {
   public:
-    std::shared_ptr<AppState> appState;
-
-    explicit PlayerDecisionSystem(std::shared_ptr<AppState>& appState) : appState(appState) {
+    PlayerDecisionSystem() {
+      RequireComponent<BoundingBoxComponent>();
     }
 
-    void SubscribeToEvents(const std::shared_ptr<Events::Bus>& eventBus) {
-      eventBus->SubscribeToEvent<CollisionEvent>(this, &PlayerDecisionSystem::OnCollision);
-    }
-
-    void OnCollision(CollisionEvent& event) {
-      Entity a = event.a;
-      Entity b = event.b;
-
+    void Update(std::shared_ptr<Registry>& registry, std::shared_ptr<AppState>& appState) {
       auto ticks = SDL_GetTicks();
-      int minDelay = 323;
 
-      sort(appState->actions.begin(), appState->actions.end(), [](const Action& a, const Action& b) {
-        return a.lastAt - b.lastAt;
+      auto areas = registry->GetEntitiesByGroup("Area");
+      auto apples = registry->GetEntitiesByGroup("Apple");
+
+      std::vector<IndexPositionMap> applePositions = {};
+
+      for (int index = 0; index < apples.size(); index++) {
+        auto apple = apples[index];
+        auto appleBoundingBox = apple.GetComponent<BoundingBoxComponent>();
+
+        applePositions.push_back({ index, appleBoundingBox.positionX });
+      }
+
+      std::sort(applePositions.begin(), applePositions.end(), [](IndexPositionMap a, IndexPositionMap b) {
+        return a.positionX < b.positionX;
       });
 
-      for (Action& action: appState->actions) {
-        if (
-            (a.HasTag(action.areaType) || b.HasTag(action.areaType))
-            && ticks - action.lastAt > minDelay
-            ) {
-          if (action.areaType == "AreaTop") {
-            Keyboard::ArrowUp();
-            action.lastAt = SDL_GetTicks();
+      for (auto applePosition: applePositions) {
+        auto apple = apples[applePosition.index];
+        auto appleBoundingBox = apple.GetComponent<BoundingBoxComponent>();
+
+        for (auto area: areas) {
+          auto areaBoundingBox = area.GetComponent<BoundingBoxComponent>();
+
+          bool collisionHappened = CheckAABBCollision(
+              appleBoundingBox.positionX,
+              appleBoundingBox.positionY,
+              appleBoundingBox.width,
+              appleBoundingBox.height,
+              areaBoundingBox.positionX,
+              areaBoundingBox.positionY,
+              areaBoundingBox.width,
+              areaBoundingBox.height
+          );
+
+          int actionIndex = -1;
+
+          if (area.HasTag("AreaTop")) {
+            actionIndex = 0;
+          }
+          if (area.HasTag("AreaMid")) {
+            actionIndex = 1;
+          }
+          if (area.HasTag("AreaBottom")) {
+            actionIndex = 2;
           }
 
-          if (action.areaType == "AreaMid") {
-            Keyboard::ArrowRight();
-            action.lastAt = SDL_GetTicks();
-          }
+          if (collisionHappened && ticks - appState->actions[actionIndex].lastAt > MIN_DELAY) {
+            if (area.HasTag("AreaTop")) {
+              Keyboard::ArrowUp();
+            }
+            if (area.HasTag("AreaMid")) {
+              Keyboard::ArrowRight();
+            }
+            if (area.HasTag("AreaBottom")) {
+              Keyboard::ArrowDown();
+            }
 
-          if (action.areaType == "AreaBottom") {
-            Keyboard::ArrowDown();
-            action.lastAt = SDL_GetTicks();
+            appState->actions[actionIndex].lastAt = SDL_GetTicks();
           }
-          Logger::Log(action.areaType);
         }
       }
+    }
+
+    bool CheckAABBCollision(double aX, double aY, double aW, double aH, double bX, double bY, double bW, double bH) {
+      return (
+          aX < bX + bW &&
+          aX + aW > bX &&
+          aY < bY + bH &&
+          aY + aH > bY
+      );
     }
 };
