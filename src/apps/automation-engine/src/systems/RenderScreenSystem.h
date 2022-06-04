@@ -8,7 +8,7 @@ class RenderScreenSystem : public System {
   public:
     RenderScreenSystem() = default;
 
-    void Update(SDL_Renderer* renderer, Screen* screen, AppState* state) {
+    void Update(SDL_Renderer* renderer, std::unique_ptr<Screen>& screen, std::shared_ptr<AppState>& state) {
       MatrixAsTexture(renderer, screen->latestScreenshot);
     }
 };

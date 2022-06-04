@@ -8,7 +8,7 @@ class CollisionSystem : public System {
       RequireComponent<BoundingBoxComponent>();
     }
 
-    void Update(AppState* state, const std::shared_ptr<Events::Bus>& eventBus) {
+    void Update(std::shared_ptr<AppState>& state, const std::shared_ptr<Events::Bus>& eventBus) {
       auto entities = GetSystemEntities();
 
       // Loop all the entities that the system is interested in

@@ -9,8 +9,8 @@
 
 class App : public Loop::Core {
   public:
-    AppState appState = AppState();
-    Screen* screen;
+    std::shared_ptr<AppState> appState = std::make_shared<AppState>();
+    std::unique_ptr<Screen> screen;
 
     std::shared_ptr<Registry> registry;
     std::shared_ptr<AssetStore> assetStore;
@@ -21,10 +21,6 @@ class App : public Loop::Core {
     ) : Core(std::move(time), std::move(renderer), std::move(eventManager)) {
       registry = std::make_shared<Registry>();
       assetStore = std::make_shared<AssetStore>();
-    }
-
-    ~App() {
-      delete screen;
     }
 
     void OnSetup() override;

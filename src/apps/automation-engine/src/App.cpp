@@ -12,7 +12,7 @@
 #include "components/BoundingBoxComponent.h"
 
 void App::OnSetup() {
-  screen = new Screen(&state.window.width, &state.window.height, &appState.windowX, &appState.windowY);
+  screen = std::make_unique<Screen>(&state.window.width, &state.window.height, &appState->windowX, &appState->windowY);
 
   registry->AddSystem<ScreenSystem>();
   registry->AddSystem<RenderScreenSystem>();
@@ -20,7 +20,7 @@ void App::OnSetup() {
   registry->AddSystem<DetectionSystem>();
   registry->AddSystem<RenderBoundingBoxSystem>();
   registry->AddSystem<CollisionSystem>();
-  registry->AddSystem<PlayerDecisionSystem>(&appState);
+  registry->AddSystem<PlayerDecisionSystem>(appState);
 
   Entity areaTop = registry->CreateEntity();
   areaTop.Tag("AreaTop");
@@ -45,11 +45,11 @@ void App::OnUpdate() {
   registry->Update();
 
   registry->GetSystem<ScreenSystem>().Update(screen);
-  registry->GetSystem<DetectionSystem>().Update(screen, &appState, registry);
-  registry->GetSystem<CollisionSystem>().Update(&appState, eventManager->eventBus);
+  registry->GetSystem<DetectionSystem>().Update(screen, appState, registry);
+  registry->GetSystem<CollisionSystem>().Update(appState, eventManager->eventBus);
 }
 
 void App::OnRender() {
-  registry->GetSystem<RenderBoundingBoxSystem>().Update(renderer->renderer, screen, &appState);
-  registry->GetSystem<RenderScreenSystem>().Update(renderer->renderer, screen, &appState);
+  registry->GetSystem<RenderBoundingBoxSystem>().Update(renderer->renderer, screen, appState);
+  registry->GetSystem<RenderScreenSystem>().Update(renderer->renderer, screen, appState);
 }

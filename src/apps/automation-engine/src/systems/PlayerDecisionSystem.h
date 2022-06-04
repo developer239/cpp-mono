@@ -5,9 +5,9 @@
 
 class PlayerDecisionSystem : public System {
   public:
-    AppState* appState;
+    std::shared_ptr<AppState> appState;
 
-    explicit PlayerDecisionSystem(AppState* appState) : appState(appState) {
+    explicit PlayerDecisionSystem(std::shared_ptr<AppState>& appState) : appState(appState) {
     }
 
     void SubscribeToEvents(const std::shared_ptr<Events::Bus>& eventBus) {

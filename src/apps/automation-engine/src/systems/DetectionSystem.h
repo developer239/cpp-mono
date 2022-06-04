@@ -7,7 +7,7 @@ class DetectionSystem : public System {
     DetectionSystem() = default;
 
     // TODO: remove registry and access entities with "this"
-    void Update(Screen* screen, AppState* state, std::shared_ptr<Registry> registry) {
+    void Update(std::unique_ptr<Screen>& screen, std::shared_ptr<AppState>& state, std::shared_ptr<Registry> registry) {
       cv::Mat* latestScreenShotDebug = screen->latestScreenshot;
 
       if (state->shouldDetectColors) {
@@ -28,7 +28,7 @@ class DetectionSystem : public System {
     }
 
   private:
-    void DetectColors(cv::Mat* inputMatrix, AppState* state) {
+    void DetectColors(cv::Mat* inputMatrix, std::shared_ptr<AppState>& state) {
       cv::inRange(
           *inputMatrix,
           cv::Scalar(state->lowerRed, state->lowerGreen, state->lowerBlue),
@@ -37,7 +37,7 @@ class DetectionSystem : public System {
       );
     }
 
-    void ErodeDilate(cv::Mat* inputMatrix, AppState* state) {
+    void ErodeDilate(cv::Mat* inputMatrix, std::shared_ptr<AppState>& state) {
       cv::morphologyEx(
           *inputMatrix,
           *inputMatrix,

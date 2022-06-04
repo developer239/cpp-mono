@@ -8,7 +8,7 @@ class RenderBoundingBoxSystem : public System {
       RequireComponent<BoundingBoxComponent>();
     }
 
-    void Update(SDL_Renderer* renderer, Screen* screen, AppState* state) {
+    void Update(SDL_Renderer* renderer, std::unique_ptr<Screen>& screen, std::shared_ptr<AppState>& state) {
       cv::Mat* latestScreenShot = screen->latestScreenshot;
 
       for (auto entity: GetSystemEntities()) {

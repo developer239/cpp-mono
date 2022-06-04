@@ -4,7 +4,7 @@ class ScreenSystem : public System {
   public:
     ScreenSystem() = default;
 
-    void Update(Screen* screen) {
+    void Update(std::unique_ptr<Screen>& screen) {
       screen->Screenshot();
     }
 };
