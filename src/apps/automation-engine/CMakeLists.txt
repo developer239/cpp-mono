@@ -5,7 +5,7 @@ set(SOURCES
         src/main.cpp
         src/App.cpp
         src/App.h
-        src/services/AppState.h src/systems/ScreenSystem.h src/systems/RenderScreenSystem.h)
+        src/services/AppState.h src/systems/ScreenSystem.h src/systems/RenderScreenSystem.h src/events/KeyPressedEvent.h src/systems/KeyboardControlSystem.h)
 
 add_executable(${APP_NAME} ${SOURCES})
 
