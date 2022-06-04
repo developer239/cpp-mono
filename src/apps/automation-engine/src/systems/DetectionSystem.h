@@ -8,7 +8,7 @@ class DetectionSystem : public System {
 
     // TODO: remove registry and access entities with "this"
     void Update(std::unique_ptr<Screen>& screen, std::shared_ptr<AppState>& state, std::shared_ptr<Registry> registry) {
-      cv::Mat* latestScreenShotDebug = screen->latestScreenshot;
+      cv::Mat latestScreenShotDebug = screen->latestScreenshot->clone();
 
       if (state->shouldDetectColors) {
         DetectColors(latestScreenShotDebug, state);
@@ -18,40 +18,40 @@ class DetectionSystem : public System {
         ErodeDilate(latestScreenShotDebug, state);
       }
 
-      if (state->shouldFindContours && latestScreenShotDebug->channels() == 1) {
+      if (state->shouldFindContours && latestScreenShotDebug.channels() == 1) {
         FindContours(latestScreenShotDebug, registry);
       }
 
-      if (latestScreenShotDebug->channels() == 1) {
-        cv::cvtColor(*latestScreenShotDebug, *latestScreenShotDebug, cv::COLOR_GRAY2BGR);
+      if (latestScreenShotDebug.channels() == 1) {
+        cv::cvtColor(latestScreenShotDebug, latestScreenShotDebug, cv::COLOR_GRAY2BGR);
       }
     }
 
   private:
-    void DetectColors(cv::Mat* inputMatrix, std::shared_ptr<AppState>& state) {
+    void DetectColors(cv::Mat& inputMatrix, std::shared_ptr<AppState>& state) {
       cv::inRange(
-          *inputMatrix,
+          inputMatrix,
           cv::Scalar(state->lowerRed, state->lowerGreen, state->lowerBlue),
           cv::Scalar(state->upperRed, state->upperGreen, state->upperBlue),
-          *inputMatrix
+          inputMatrix
       );
     }
 
-    void ErodeDilate(cv::Mat* inputMatrix, std::shared_ptr<AppState>& state) {
+    void ErodeDilate(cv::Mat& inputMatrix, std::shared_ptr<AppState>& state) {
       cv::morphologyEx(
-          *inputMatrix,
-          *inputMatrix,
+          inputMatrix,
+          inputMatrix,
           cv::MORPH_OPEN,
           cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(state->morphologyWidth, state->morphologyHeight))
       );
     }
 
     // TODO: optimize memory management
-    void FindContours(cv::Mat* inputMatrix, std::shared_ptr<Registry>& registry) {
+    void FindContours(cv::Mat& inputMatrix, std::shared_ptr<Registry>& registry) {
       std::vector<std::vector<cv::Point>> contours;
 
       cv::findContours(
-          *inputMatrix,
+          inputMatrix,
           contours,
           cv::RETR_TREE,
           cv::CHAIN_APPROX_SIMPLE

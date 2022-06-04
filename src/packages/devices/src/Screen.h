@@ -10,8 +10,7 @@ class Screen {
     int* windowX;
     int* windowY;
 
-    // TODO: smart pointers
-    cv::Mat* imageOriginal;
+    std::unique_ptr<cv::Mat> imageOriginal;
     cv::Mat* latestScreenshot;
 
     Screen(int* w, int* h, int* x, int* y);

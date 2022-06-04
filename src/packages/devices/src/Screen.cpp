@@ -6,7 +6,7 @@ Screen::Screen(int* w, int* h, int* x, int* y) {
   windowX = x;
   windowY = y;
 
-  imageOriginal = new cv::Mat(cv::Size(*width, *height), CV_8UC4);
+  imageOriginal = std::make_unique<cv::Mat>(cv::Size(*width, *height), CV_8UC4);
   latestScreenshot = new cv::Mat(cv::Size(*width, *height), CV_8UC3);
 
   colorSpace = CGColorSpaceCreateDeviceRGB();
@@ -15,7 +15,6 @@ Screen::Screen(int* w, int* h, int* x, int* y) {
 Screen::~Screen() {
   CGColorSpaceRelease(colorSpace);
 
-  delete imageOriginal;
   delete latestScreenshot;
 }
 
