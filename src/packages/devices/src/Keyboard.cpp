@@ -2,45 +2,45 @@
 #include "Delay.h"
 #include "Keyboard.h"
 
-void Keyboard::type(std::string query) {
+void Keyboard::Type(std::string query) {
   for (std::string::size_type i = 0; i < query.size(); i += 1) {
-    click(query[i]);
+    Click(query[i]);
   }
 }
 
-void Keyboard::click(char keyASCII) {
-  int key = mapASCIIToVirtualKey(keyASCII);
+void Keyboard::Click(char keyASCII) {
+  int key = MapASCIIToVirtualKey(keyASCII);
 
-  press(key);
-  release(key);
+  Press(key);
+  Release(key);
 }
 
-void Keyboard::clickEnter() {
-  press(36);
-  release(36);
+void Keyboard::ClickEnter() {
+  Press(36);
+  Release(36);
 }
 
-void Keyboard::arrowUp() {
-  press(126);
-  release(126);
+void Keyboard::ArrowUp() {
+  Press(126);
+  Release(126);
 }
 
-void Keyboard::arrowDown() {
-  press(125);
-  release(125);
+void Keyboard::ArrowDown() {
+  Press(125);
+  Release(125);
 }
 
-void Keyboard::arrowLeft() {
-  press(123);
-  release(123);
+void Keyboard::ArrowLeft() {
+  Press(123);
+  Release(123);
 }
 
-void Keyboard::arrowRight() {
-  press(124);
-  release(124);
+void Keyboard::ArrowRight() {
+  Press(124);
+  Release(124);
 }
 
-void Keyboard::press(int key) {
+void Keyboard::Press(int key) {
   CGEventSourceRef source = CGEventSourceCreate(kCGEventSourceStateHIDSystemState);
   CGEventRef event = CGEventCreateKeyboardEvent(source, (CGKeyCode) key, true);
   CGEventPost(kCGHIDEventTap, event);
@@ -51,7 +51,7 @@ void Keyboard::press(int key) {
   delay(5);
 }
 
-void Keyboard::release(int key) {
+void Keyboard::Release(int key) {
   CGEventSourceRef source = CGEventSourceCreate(kCGEventSourceStateHIDSystemState);
   CGEventRef event = CGEventCreateKeyboardEvent(source, (CGKeyCode) key, false);
 
@@ -62,7 +62,7 @@ void Keyboard::release(int key) {
   delay(5);
 }
 
-int Keyboard::mapASCIIToVirtualKey(char key) {
+int Keyboard::MapASCIIToVirtualKey(char key) {
   switch (key) {
     case 'a':
       return 0;

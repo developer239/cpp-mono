@@ -4,23 +4,23 @@
 
 class Keyboard {
   public:
-    static void type(std::string query);
+    static void Type(std::string query);
 
-    static void click(char keyASCII);
+    static void Click(char keyASCII);
 
-    static void clickEnter();
+    static void ClickEnter();
 
-    static void arrowUp();
+    static void ArrowUp();
 
-    static void arrowDown();
+    static void ArrowDown();
 
-    static void arrowLeft();
+    static void ArrowLeft();
 
-    static void arrowRight();
+    static void ArrowRight();
 
-    static void press(int key);
+    static void Press(int key);
 
-    static void release(int key);
+    static void Release(int key);
 
-    static int mapASCIIToVirtualKey(char key);
+    static int MapASCIIToVirtualKey(char key);
 };
