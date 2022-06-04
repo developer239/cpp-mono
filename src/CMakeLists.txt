@@ -2,6 +2,7 @@ add_subdirectory(apps/pong)
 add_subdirectory(apps/pong-ecs)
 
 add_subdirectory(packages/asset-store-sdl)
+add_subdirectory(packages/devices)
 add_subdirectory(packages/ecs)
 add_subdirectory(packages/events)
 add_subdirectory(packages/logger)

@@ -10,6 +10,8 @@ include(CheckCompilerSupported)
 include(UseCodeCoverage)
 include(UseCodeCoverage)
 
+include(UseOpenCV)
+
 CheckCompilerSupported()
 enable_testing()
 
