@@ -9,7 +9,7 @@ struct IndexPositionMap {
   int positionX;
 };
 
-int MIN_DELAY = 350;
+int MIN_DELAY = 375;
 
 class PlayerDecisionSystem : public System {
   public:
