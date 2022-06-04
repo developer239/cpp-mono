@@ -11,6 +11,9 @@
 #include "systems/CollisionSystem.h"
 #include "components/BoundingBoxComponent.h"
 
+int lastA = 0;
+int lastB = 0;
+
 void App::OnSetup() {
   screen = std::make_unique<Screen>(&state.window.width, &state.window.height, &appState->windowX, &appState->windowY);
 
@@ -25,17 +28,17 @@ void App::OnSetup() {
   Entity areaTop = registry->CreateEntity();
   areaTop.Tag("AreaTop");
   areaTop.Group("Area");
-  areaTop.AddComponent<BoundingBoxComponent>(140, 230, 140, 110);
+  areaTop.AddComponent<BoundingBoxComponent>(140, 230, 100, 105);
 
   Entity areaMid = registry->CreateEntity();
   areaMid.Tag("AreaMid");
   areaMid.Group("Area");
-  areaMid.AddComponent<BoundingBoxComponent>(170, 358, 150, 7);
+  areaMid.AddComponent<BoundingBoxComponent>(140, 358, 140, 7);
 
   Entity areaBottom = registry->CreateEntity();
   areaBottom.Tag("AreaBottom");
   areaBottom.Group("Area");
-  areaBottom.AddComponent<BoundingBoxComponent>(170, 426, 150, 7);
+  areaBottom.AddComponent<BoundingBoxComponent>(140, 426, 140, 7);
 }
 
 void App::OnInput(SDL_Event sdlEvent) {
@@ -47,9 +50,18 @@ void App::OnUpdate() {
   registry->Update();
 
   registry->GetSystem<ScreenSystem>().Update(screen);
-  registry->GetSystem<DetectionSystem>().Update(screen, appState, registry);
-  registry->GetSystem<CollisionSystem>().Update(appState, eventManager->eventBus);
-  registry->GetSystem<PlayerDecisionSystem>().Update(registry, appState);
+
+  if(SDL_GetTicks() - lastA > 30) {
+    registry->GetSystem<DetectionSystem>().Update(screen, appState, registry);
+    registry->GetSystem<CollisionSystem>().Update(appState, eventManager->eventBus);
+    registry->GetSystem<PlayerDecisionSystem>().Update(registry, appState);
+    lastA = SDL_GetTicks();
+  }
+
+//  if(SDL_GetTicks() - lastB > 40) {
+//    registry->GetSystem<PlayerDecisionSystem>().Update(registry, appState);
+//    lastB = SDL_GetTicks();
+//  }
 }
 
 void App::OnRender() {

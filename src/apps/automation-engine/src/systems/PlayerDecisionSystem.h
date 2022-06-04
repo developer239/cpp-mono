@@ -8,8 +8,7 @@ struct IndexPositionMap {
   int index;
   int positionX;
 };
-
-int MIN_DELAY = 350;
+int MIN_DELAY = 300;
 
 class PlayerDecisionSystem : public System {
   public:
@@ -67,17 +66,27 @@ class PlayerDecisionSystem : public System {
           }
 
           if (collisionHappened && ticks - appState->actions[actionIndex].lastAt > MIN_DELAY) {
+            if (ticks - appState->actions[actionIndex].lastAt > 100000) {
+              Logger::Err("Fixing timestamp: " + std::to_string(ticks - appState->actions[actionIndex].lastAt));
+              appState->actions[actionIndex].lastAt = SDL_GetTicks();
+              continue;
+            }
+
             if (area.HasTag("AreaTop")) {
+              Logger::Log("AreaTop after " + std::to_string(ticks - appState->actions[actionIndex].lastAt) + " ms");
               Keyboard::ArrowUp();
             }
             if (area.HasTag("AreaMid")) {
+              Logger::Log("AreaMid after " + std::to_string(ticks - appState->actions[actionIndex].lastAt) + " ms");
               Keyboard::ArrowRight();
             }
             if (area.HasTag("AreaBottom")) {
+              Logger::Log("AreaBottom after " + std::to_string(ticks - appState->actions[actionIndex].lastAt) + " ms");
               Keyboard::ArrowDown();
             }
 
             appState->actions[actionIndex].lastAt = SDL_GetTicks();
+//            return;
           }
         }
       }

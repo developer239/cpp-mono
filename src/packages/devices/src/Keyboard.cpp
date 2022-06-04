@@ -48,7 +48,7 @@ void Keyboard::Press(int key) {
   CFRelease(event);
   CFRelease(source);
 
-  delay(1);
+  delay(5);
 }
 
 void Keyboard::Release(int key) {

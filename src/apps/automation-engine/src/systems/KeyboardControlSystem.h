@@ -15,6 +15,6 @@ class KeyboardControlSystem : public System {
     }
 
     void OnKeyPressed(KeyPressedEvent& event) {
-      Logger::Log("KeyboardControlSystem: " + std::to_string(event.symbol) + " pressed");
+//      Logger::Log("KeyboardControlSystem: " + std::to_string(event.symbol) + " pressed");
     }
 };
