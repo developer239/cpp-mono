@@ -14,7 +14,7 @@ set(SOURCES
         src/App.cpp
         src/App.h
         src/main.cpp
-        src/systems/PlayerDecisionSystem.h src/events/CollisionEvent.h src/structs/Target.h)
+        src/systems/PlayerDecisionSystem.h src/events/CollisionEvent.h src/structs/Target.h src/services/LuaState.h)
 
 add_executable(${APP_NAME} ${SOURCES})
 
@@ -44,3 +44,9 @@ target_link_libraries(${APP_NAME} PUBLIC SDL2::Main)
 find_package(SDL2_ttf REQUIRED)
 target_include_directories(${APP_NAME} PUBLIC ${SDL2_TTF_INCLUDE_DIRS})
 target_link_libraries(${APP_NAME} PUBLIC SDL2::TTF)
+
+## Lua & Sol
+
+find_package(Lua REQUIRED)
+target_include_directories(${APP_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/externals ${LUA_INCLUDE_DIR})
+target_link_libraries(${APP_NAME} PUBLIC ${LUA_LIBRARY})

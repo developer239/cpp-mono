@@ -6,10 +6,13 @@
 #include "src/AssetStore.h"
 #include "src/Screen.h"
 #include "services/AppState.h"
+#include "services/LuaState.h"
 
 class App : public Loop::Core {
   public:
     std::shared_ptr<AppState> appState = std::make_shared<AppState>();
+    std::shared_ptr<LuaState> luaState = std::make_shared<LuaState>();
+
     std::unique_ptr<Screen> screen;
 
     std::shared_ptr<Registry> registry;

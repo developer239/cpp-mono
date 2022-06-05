@@ -8,10 +8,11 @@
 #include "systems/KeyboardControlSystem.h"
 #include "systems/DetectionSystem.h"
 #include "systems/RenderBoundingBoxSystem.h"
-#include "components/BoundingBoxComponent.h"
 
 void App::OnSetup() {
   screen = std::make_unique<Screen>(&state.window.width, &state.window.height, &appState->windowX, &appState->windowY);
+
+  luaState->LoadSolScript("assets/scripts/strength.lua");
 
   registry->AddSystem<ScreenSystem>();
   registry->AddSystem<RenderScreenSystem>();
@@ -20,25 +21,7 @@ void App::OnSetup() {
   registry->AddSystem<RenderBoundingBoxSystem>();
   registry->AddSystem<PlayerDecisionSystem>();
 
-  Entity areaTop = registry->CreateEntity();
-  areaTop.Tag("AreaTop");
-  areaTop.Group("Area");
-  areaTop.AddComponent<BoundingBoxComponent>(140, 230, 160, 105);
-
-  Entity areaMid = registry->CreateEntity();
-  areaMid.Tag("AreaMid");
-  areaMid.Group("Area");
-  areaMid.AddComponent<BoundingBoxComponent>(140, 358, 180, 7);
-
-  Entity areaBottom = registry->CreateEntity();
-  areaBottom.Tag("AreaBottom");
-  areaBottom.Group("Area");
-  areaBottom.AddComponent<BoundingBoxComponent>(140, 426, 180, 7);
-
-  Entity areaBack = registry->CreateEntity();
-  areaBack.Tag("AreaBack");
-  areaBack.Group("Area");
-  areaBack.AddComponent<BoundingBoxComponent>(37, 324, 28, 64);
+  luaState->LoadEntities(registry);
 }
 
 void App::OnInput(SDL_Event sdlEvent) {
