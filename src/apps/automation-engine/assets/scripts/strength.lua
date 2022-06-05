@@ -7,16 +7,16 @@ ACTIONS = {
 
 MIN_DELAY = 280;
 
-function onUpdate()
+function playStar()
     ticks = sdl_get_ticks()
 
     stars = get_entities_by_group("Star")
     areaBack = get_entity_by_tag("AreaBack")
 
-    starIndexToPosition = {}
+    appleIndexToPosition = {}
 
     for i, star in ipairs(stars) do
-        starIndexToPosition[i] = {
+        appleIndexToPosition[i] = {
             index = i,
             positionX = get_entity_bounding_box(star).positionX
         }
@@ -28,7 +28,7 @@ function onUpdate()
     -- sort this !!
     -- sort this !!
 
-    for i, starPosition in ipairs(starIndexToPosition) do
+    for i, starPosition in ipairs(appleIndexToPosition) do
         star = stars[starPosition.index]
         starBoundingBox = get_entity_bounding_box(star)
         areaBoundingBox = get_entity_bounding_box(areaBack)
@@ -46,7 +46,7 @@ function onUpdate()
 
         if collisionHappened and (ticks - ACTIONS[4].lastAt > MIN_DELAY) then
             if ticks - ACTIONS[4].lastAt > 100000 then
-                logError("Fixing position")
+                logError("Fixing timestamp")
                 ACTIONS[4].lastAt = sdl_get_ticks();
             else
                 log("Press arrow left")
@@ -54,11 +54,92 @@ function onUpdate()
                 press_arrow_left();
             end
         end
-
     end
-
 end
 
+function playApple()
+    ticks = sdl_get_ticks()
+
+    areas = get_entities_by_group("Area")
+    apples = get_entities_by_group("Apple")
+
+    appleIndexToPosition = {}
+
+    for i, apple in ipairs(apples) do
+        appleIndexToPosition[i] = {
+            index = i,
+            positionX = get_entity_bounding_box(apple).positionX
+        }
+    end
+
+    -- sort this !!
+    -- sort this !!
+    -- sort this !!
+    -- sort this !!
+    -- sort this !!
+
+    for i, applePosition in ipairs(appleIndexToPosition) do
+        apple = apples[applePosition.index]
+        appleBoundingBox = get_entity_bounding_box(apple)
+
+        for j, area in ipairs(areas) do
+            actionIndex = -1
+            areaBoundingBox = get_entity_bounding_box(area)
+
+            collisionHappened = check_aabb_collision(
+                    appleBoundingBox.positionX,
+                    appleBoundingBox.positionY,
+                    appleBoundingBox.width,
+                    appleBoundingBox.height,
+                    areaBoundingBox.positionX,
+                    areaBoundingBox.positionY,
+                    areaBoundingBox.width,
+                    areaBoundingBox.height
+            )
+
+            if(entity_has_tag(area, "AreaTop")) then
+                actionIndex = 1
+            end
+            if(entity_has_tag(area, "AreaMid")) then
+                actionIndex = 2
+            end
+            if(entity_has_tag(area, "AreaBottom")) then
+                actionIndex = 3
+            end
+
+            if actionIndex > 0 then
+                if collisionHappened and (ticks - ACTIONS[actionIndex].lastAt > MIN_DELAY) then
+                    if ticks - ACTIONS[actionIndex].lastAt > 100000 then
+                        logError("Fixing timestamp")
+                        ACTIONS[actionIndex].lastAt = sdl_get_ticks();
+                    else
+                        if(entity_has_tag(area, "AreaTop")) then
+                            log("Press arrow up")
+                            press_arrow_up()
+                        end
+                        if(entity_has_tag(area, "AreaMid")) then
+                            log("Press arrow right")
+                            press_arrow_right()
+                        end
+                        if(entity_has_tag(area, "AreaBottom")) then
+                            log("Press arrow down")
+                            press_arrow_down()
+                        end
+
+                        ACTIONS[actionIndex].lastAt = sdl_get_ticks();
+                    end
+                end
+            end
+        end
+    end
+end
+
+function onUpdate()
+    playApple()
+    playStar()
+end
+
+-- TODO: move to separate file
 Level = {
     window = {
         windowX = 0,

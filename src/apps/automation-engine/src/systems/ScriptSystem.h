@@ -15,6 +15,7 @@ class ScriptSystem : public System {
         registry(registry) {
     }
 
+    // TODO: create bindings in separate files
     void CreateLuaBindings() {
       //
       // Keyboard
@@ -48,6 +49,13 @@ class ScriptSystem : public System {
           "get_entity_bounding_box",
           [this](const Entity& entity) {
             return entity.GetComponent<BoundingBoxComponent>();
+          }
+      );
+
+      lua->sol.set_function(
+          "entity_has_tag",
+          [this](const Entity& entity, const std::string& tag) {
+            return entity.HasTag(tag);
           }
       );
 
