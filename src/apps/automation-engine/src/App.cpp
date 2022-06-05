@@ -28,17 +28,17 @@ void App::OnSetup() {
   Entity areaTop = registry->CreateEntity();
   areaTop.Tag("AreaTop");
   areaTop.Group("Area");
-  areaTop.AddComponent<BoundingBoxComponent>(140, 230, 100, 105);
+  areaTop.AddComponent<BoundingBoxComponent>(140, 230, 160, 105);
 
   Entity areaMid = registry->CreateEntity();
   areaMid.Tag("AreaMid");
   areaMid.Group("Area");
-  areaMid.AddComponent<BoundingBoxComponent>(140, 358, 140, 7);
+  areaMid.AddComponent<BoundingBoxComponent>(140, 358, 180, 7);
 
   Entity areaBottom = registry->CreateEntity();
   areaBottom.Tag("AreaBottom");
   areaBottom.Group("Area");
-  areaBottom.AddComponent<BoundingBoxComponent>(140, 426, 140, 7);
+  areaBottom.AddComponent<BoundingBoxComponent>(140, 426, 180, 7);
 }
 
 void App::OnInput(SDL_Event sdlEvent) {
@@ -51,17 +51,9 @@ void App::OnUpdate() {
 
   registry->GetSystem<ScreenSystem>().Update(screen);
 
-  if(SDL_GetTicks() - lastA > 30) {
-    registry->GetSystem<DetectionSystem>().Update(screen, appState, registry);
-    registry->GetSystem<CollisionSystem>().Update(appState, eventManager->eventBus);
-    registry->GetSystem<PlayerDecisionSystem>().Update(registry, appState);
-    lastA = SDL_GetTicks();
-  }
-
-//  if(SDL_GetTicks() - lastB > 40) {
-//    registry->GetSystem<PlayerDecisionSystem>().Update(registry, appState);
-//    lastB = SDL_GetTicks();
-//  }
+  registry->GetSystem<DetectionSystem>().Update(screen, appState, registry);
+  registry->GetSystem<CollisionSystem>().Update(appState, eventManager->eventBus);
+  registry->GetSystem<PlayerDecisionSystem>().Update(registry, appState);
 }
 
 void App::OnRender() {
