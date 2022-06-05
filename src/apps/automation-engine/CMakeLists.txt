@@ -14,7 +14,7 @@ set(SOURCES
         src/App.cpp
         src/App.h
         src/main.cpp
-        src/systems/PlayerDecisionSystem.h src/events/CollisionEvent.h src/structs/Target.h src/services/LuaState.h)
+        src/systems/PlayerDecisionSystem.h src/events/CollisionEvent.h src/structs/Target.h src/services/Lua.h)
 
 add_executable(${APP_NAME} ${SOURCES})
 

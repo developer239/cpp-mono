@@ -10,9 +10,11 @@
 #include "systems/RenderBoundingBoxSystem.h"
 
 void App::OnSetup() {
-  screen = std::make_unique<Screen>(&state.window.width, &state.window.height, &appState->windowX, &appState->windowY);
+  lua->LoadSolScript("assets/scripts/strength.lua");
 
-  luaState->LoadSolScript("assets/scripts/strength.lua");
+  lua->LoadWindowPosition(appState);
+
+  screen = std::make_unique<Screen>(&state.window.width, &state.window.height, &appState->windowX, &appState->windowY);
 
   registry->AddSystem<ScreenSystem>();
   registry->AddSystem<RenderScreenSystem>();
@@ -21,7 +23,8 @@ void App::OnSetup() {
   registry->AddSystem<RenderBoundingBoxSystem>();
   registry->AddSystem<PlayerDecisionSystem>();
 
-  luaState->LoadEntities(registry);
+  lua->LoadEntities(registry);
+  lua->LoadTargets(appState);
 }
 
 void App::OnInput(SDL_Event sdlEvent) {
