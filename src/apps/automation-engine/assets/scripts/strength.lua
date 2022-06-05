@@ -1,12 +1,3 @@
-ACTIONS = {
-    { areaType = "AreaTop", lastAt = 0 },
-    { areaType = "AreaMid", lastAt = 0 },
-    { areaType = "AreaBottom", lastAt = 0 },
-    { areaType = "AreaBack", lastAt = 0 },
-}
-
-MIN_DELAY = 280;
-
 function playStar()
     ticks = sdl_get_ticks()
 
@@ -21,12 +12,6 @@ function playStar()
             positionX = get_entity_bounding_box(star).positionX
         }
     end
-
-    -- sort this !!
-    -- sort this !!
-    -- sort this !!
-    -- sort this !!
-    -- sort this !!
 
     for i, starPosition in ipairs(appleIndexToPosition) do
         star = stars[starPosition.index]
@@ -44,13 +29,13 @@ function playStar()
                 areaBoundingBox.height
         )
 
-        if collisionHappened and (ticks - ACTIONS[4].lastAt > MIN_DELAY) then
-            if ticks - ACTIONS[4].lastAt > 100000 then
+        if collisionHappened and (ticks - Level["actions"][4].lastAt > Level["minDelay"]) then
+            if ticks - Level["actions"][4].lastAt > 100000 then
                 logError("Fixing timestamp")
-                ACTIONS[4].lastAt = sdl_get_ticks();
+                Level["actions"][4].lastAt = sdl_get_ticks();
             else
                 log("Press arrow left")
-                ACTIONS[4].lastAt = sdl_get_ticks();
+                Level["actions"][4].lastAt = sdl_get_ticks();
                 press_arrow_left();
             end
         end
@@ -72,12 +57,6 @@ function playApple()
         }
     end
 
-    -- sort this !!
-    -- sort this !!
-    -- sort this !!
-    -- sort this !!
-    -- sort this !!
-
     for i, applePosition in ipairs(appleIndexToPosition) do
         apple = apples[applePosition.index]
         appleBoundingBox = get_entity_bounding_box(apple)
@@ -97,36 +76,36 @@ function playApple()
                     areaBoundingBox.height
             )
 
-            if(entity_has_tag(area, "AreaTop")) then
+            if (entity_has_tag(area, "AreaTop")) then
                 actionIndex = 1
             end
-            if(entity_has_tag(area, "AreaMid")) then
+            if (entity_has_tag(area, "AreaMid")) then
                 actionIndex = 2
             end
-            if(entity_has_tag(area, "AreaBottom")) then
+            if (entity_has_tag(area, "AreaBottom")) then
                 actionIndex = 3
             end
 
             if actionIndex > 0 then
-                if collisionHappened and (ticks - ACTIONS[actionIndex].lastAt > MIN_DELAY) then
-                    if ticks - ACTIONS[actionIndex].lastAt > 100000 then
+                if collisionHappened and (ticks - Level["actions"][actionIndex].lastAt > Level["minDelay"]) then
+                    if ticks - Level["actions"][actionIndex].lastAt > 100000 then
                         logError("Fixing timestamp")
-                        ACTIONS[actionIndex].lastAt = sdl_get_ticks();
+                        Level["actions"][actionIndex].lastAt = sdl_get_ticks();
                     else
-                        if(entity_has_tag(area, "AreaTop")) then
+                        if (entity_has_tag(area, "AreaTop")) then
                             log("Press arrow up")
                             press_arrow_up()
                         end
-                        if(entity_has_tag(area, "AreaMid")) then
+                        if (entity_has_tag(area, "AreaMid")) then
                             log("Press arrow right")
                             press_arrow_right()
                         end
-                        if(entity_has_tag(area, "AreaBottom")) then
+                        if (entity_has_tag(area, "AreaBottom")) then
                             log("Press arrow down")
                             press_arrow_down()
                         end
 
-                        ACTIONS[actionIndex].lastAt = sdl_get_ticks();
+                        Level["actions"][actionIndex].lastAt = sdl_get_ticks();
                     end
                 end
             end
@@ -139,8 +118,14 @@ function onUpdate()
     playStar()
 end
 
--- TODO: move to separate file
 Level = {
+    actions = {
+        { areaType = "AreaTop", lastAt = 0 },
+        { areaType = "AreaMid", lastAt = 0 },
+        { areaType = "AreaBottom", lastAt = 0 },
+        { areaType = "AreaBack", lastAt = 0 },
+    },
+    minDelay = 280,
     window = {
         windowX = 0,
         windowY = 60,
