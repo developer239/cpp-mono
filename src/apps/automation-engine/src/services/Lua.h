@@ -35,10 +35,16 @@ class Lua {
     }
 
     std::tuple<int, int> LoadWindowPosition(std::shared_ptr<AppState>& state) {
-      auto level = sol["Level"];
+      sol::optional<sol::table> level = sol["Level"];
 
-      state->windowX = level["window"]["windowX"];
-      state->windowY = level["window"]["windowY"];
+      if (level != sol::nullopt) {
+        sol::optional<sol::table> window = sol["Level"]["window"];
+
+        if (window != sol::nullopt) {
+          state->windowX = sol["Level"]["window"]["windowX"];
+          state->windowY = sol["Level"]["window"]["windowY"];
+        }
+      }
     }
 
     void LoadEntities(std::shared_ptr<Registry>& registry) {

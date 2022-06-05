@@ -22,6 +22,12 @@ function onUpdate()
         }
     end
 
+    -- sort this !!
+    -- sort this !!
+    -- sort this !!
+    -- sort this !!
+    -- sort this !!
+
     for i, starPosition in ipairs(starIndexToPosition) do
         print(i, starPosition.index)
 
