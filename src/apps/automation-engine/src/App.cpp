@@ -1,7 +1,6 @@
 #include <SDL.h>
 #include "App.h"
 
-#include "systems/PlayerDecisionSystem.h"
 #include "systems/ScreenSystem.h"
 #include "systems/RenderScreenSystem.h"
 #include "events/KeyPressedEvent.h"
@@ -11,7 +10,8 @@
 #include "systems/ScriptSystem.h"
 
 void App::OnSetup() {
-  lua->LoadSolScript("assets/scripts/strength.lua");
+  // Read directly from source so you don't have to rebuild
+  lua->LoadSolScript("../../../../src/apps/automation-engine/assets/scripts/strength.lua");
 
   lua->LoadWindowPosition(appState);
 
@@ -22,8 +22,7 @@ void App::OnSetup() {
   registry->AddSystem<KeyboardControlSystem>();
   registry->AddSystem<DetectionSystem>();
   registry->AddSystem<RenderBoundingBoxSystem>();
-  registry->AddSystem<PlayerDecisionSystem>();
-  registry->AddSystem<ScriptSystem>(lua);
+  registry->AddSystem<ScriptSystem>(lua, registry);
 
   registry->GetSystem<ScriptSystem>().CreateLuaBindings();
 
@@ -40,9 +39,7 @@ void App::OnUpdate() {
   registry->Update();
 
   registry->GetSystem<ScreenSystem>().Update(screen);
-
   registry->GetSystem<DetectionSystem>().Update(screen, appState, registry);
-  registry->GetSystem<PlayerDecisionSystem>().Update(registry, appState);
   registry->GetSystem<ScriptSystem>().Update();
 }
 

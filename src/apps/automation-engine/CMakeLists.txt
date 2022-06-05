@@ -4,17 +4,21 @@ set(APP_FOLDER_NAME automation-engine)
 set(SOURCES
         src/components/BoundingBoxComponent.h
         src/components/TextLabelComponent.h
+        src/events/CollisionEvent.h
         src/events/KeyPressedEvent.h
         src/services/AppState.h
+        src/services/Lua.h
+        src/structs/Target.h
         src/systems/DetectionSystem.h
         src/systems/KeyboardControlSystem.h
         src/systems/RenderBoundingBoxSystem.h
         src/systems/RenderScreenSystem.h
         src/systems/ScreenSystem.h
+        src/systems/ScriptSystem.h
         src/App.cpp
         src/App.h
         src/main.cpp
-        src/systems/PlayerDecisionSystem.h src/events/CollisionEvent.h src/structs/Target.h src/services/Lua.h src/systems/ScriptSystem.h)
+        )
 
 add_executable(${APP_NAME} ${SOURCES})
 

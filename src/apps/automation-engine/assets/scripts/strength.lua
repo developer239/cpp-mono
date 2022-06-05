@@ -1,5 +1,11 @@
 function onUpdate()
-    print("Hello World!")
+    ticks = sdl_get_ticks()
+
+    entities = get_entities_by_group("Area")
+
+    for i, entity in ipairs(entities) do
+        print(i, entity.get_id(entity))
+    end
 end
 
 Level = {
