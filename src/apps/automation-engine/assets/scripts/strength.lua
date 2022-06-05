@@ -20,14 +20,9 @@ function playStar()
         )
 
         if collisionHappened and (ticks - Level["actions"][4].lastAt > Level["minDelay"]) then
-            if ticks - Level["actions"][4].lastAt > 100000 then
-                logError("Fixing timestamp")
-                Level["actions"][4].lastAt = sdl_get_ticks();
-            else
-                log("Press arrow left")
-                Level["actions"][4].lastAt = sdl_get_ticks();
-                press_arrow_left();
-            end
+            log("Press arrow left")
+            Level["actions"][4].lastAt = sdl_get_ticks();
+            press_arrow_left();
         end
     end
 end
@@ -68,25 +63,20 @@ function playApple()
 
             if actionIndex > 0 then
                 if collisionHappened and (ticks - Level["actions"][actionIndex].lastAt > Level["minDelay"]) then
-                    if ticks - Level["actions"][actionIndex].lastAt > 100000 then
-                        logError("Fixing timestamp")
-                        Level["actions"][actionIndex].lastAt = sdl_get_ticks();
-                    else
-                        if (entity_has_tag(area, "AreaTop")) then
-                            log("Press arrow up")
-                            press_arrow_up()
-                        end
-                        if (entity_has_tag(area, "AreaMid")) then
-                            log("Press arrow right")
-                            press_arrow_right()
-                        end
-                        if (entity_has_tag(area, "AreaBottom")) then
-                            log("Press arrow down")
-                            press_arrow_down()
-                        end
-
-                        Level["actions"][actionIndex].lastAt = sdl_get_ticks();
+                    if (entity_has_tag(area, "AreaTop")) then
+                        log("Press arrow up")
+                        press_arrow_up()
                     end
+                    if (entity_has_tag(area, "AreaMid")) then
+                        log("Press arrow right")
+                        press_arrow_right()
+                    end
+                    if (entity_has_tag(area, "AreaBottom")) then
+                        log("Press arrow down")
+                        press_arrow_down()
+                    end
+
+                    Level["actions"][actionIndex].lastAt = sdl_get_ticks();
                 end
             end
         end

@@ -14,6 +14,8 @@ void App::OnSetup() {
   lua->LoadSolScript("../../../../src/apps/automation-engine/assets/scripts/strength.lua");
 
   lua->LoadWindowPosition(appState);
+  lua->LoadEntities(registry);
+  lua->LoadTargets(appState);
 
   screen = std::make_unique<Screen>(&state.window.width, &state.window.height, &appState->windowX, &appState->windowY);
 
@@ -25,9 +27,6 @@ void App::OnSetup() {
   registry->AddSystem<ScriptSystem>(lua, registry);
 
   registry->GetSystem<ScriptSystem>().CreateLuaBindings();
-
-  lua->LoadEntities(registry);
-  lua->LoadTargets(appState);
 }
 
 void App::OnInput(SDL_Event sdlEvent) {
