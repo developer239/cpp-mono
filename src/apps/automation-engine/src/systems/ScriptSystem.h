@@ -25,8 +25,8 @@ class ScriptSystem : public System {
 
       // sol new user type vector with size
 
-      sol::usertype<Entity> entityType = lua->sol.new_usertype<Entity>("entity", sol::constructors<Entity(int id)>());
-      entityType["get_id"] = [](Entity& entity) { return entity.GetId(); };
+      sol::usertype<Entity> entity = lua->sol.new_usertype<Entity>("Entity");
+      entity["get_id"] = sol::property(&Entity::GetId);
 
       lua->sol.set_function(
           "get_entities_by_group",

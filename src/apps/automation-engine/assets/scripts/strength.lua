@@ -4,7 +4,7 @@ function onUpdate()
     entities = get_entities_by_group("Area")
 
     for i, entity in ipairs(entities) do
-        print(i, entity.get_id(entity))
+        print(i, entity.get_id)
     end
 end
 
