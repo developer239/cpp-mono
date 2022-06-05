@@ -8,7 +8,6 @@
 #include "systems/KeyboardControlSystem.h"
 #include "systems/DetectionSystem.h"
 #include "systems/RenderBoundingBoxSystem.h"
-#include "systems/CollisionSystem.h"
 #include "components/BoundingBoxComponent.h"
 
 void App::OnSetup() {
@@ -19,7 +18,6 @@ void App::OnSetup() {
   registry->AddSystem<KeyboardControlSystem>();
   registry->AddSystem<DetectionSystem>();
   registry->AddSystem<RenderBoundingBoxSystem>();
-  registry->AddSystem<CollisionSystem>();
   registry->AddSystem<PlayerDecisionSystem>();
 
   Entity areaTop = registry->CreateEntity();
@@ -54,7 +52,6 @@ void App::OnUpdate() {
   registry->GetSystem<ScreenSystem>().Update(screen);
 
   registry->GetSystem<DetectionSystem>().Update(screen, appState, registry);
-  registry->GetSystem<CollisionSystem>().Update(appState, eventManager->eventBus);
   registry->GetSystem<PlayerDecisionSystem>().Update(registry, appState);
 }
 

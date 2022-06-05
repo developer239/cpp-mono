@@ -6,7 +6,6 @@ set(SOURCES
         src/components/TextLabelComponent.h
         src/events/KeyPressedEvent.h
         src/services/AppState.h
-        src/systems/CollisionSystem.h
         src/systems/DetectionSystem.h
         src/systems/KeyboardControlSystem.h
         src/systems/RenderBoundingBoxSystem.h
