@@ -4,16 +4,16 @@ function playStar()
     stars = get_entities_by_group("Star")
     areaBack = get_entity_by_tag("AreaBack")
 
-    appleIndexToPosition = {}
+    starIndexToPosition = {}
 
     for i, star in ipairs(stars) do
-        appleIndexToPosition[i] = {
+        starIndexToPosition[i] = {
             index = i,
             positionX = get_entity_bounding_box(star).positionX
         }
     end
 
-    for i, starPosition in ipairs(appleIndexToPosition) do
+    for i, starPosition in ipairs(starIndexToPosition) do
         star = stars[starPosition.index]
         starBoundingBox = get_entity_bounding_box(star)
         areaBoundingBox = get_entity_bounding_box(areaBack)
