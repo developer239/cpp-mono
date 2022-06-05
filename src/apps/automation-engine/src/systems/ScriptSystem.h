@@ -15,29 +15,39 @@ class ScriptSystem : public System {
         registry(registry) {
     }
 
-    // TODO: create bindings in separate files
     void CreateLuaBindings() {
-      //
-      // Keyboard
-      lua->sol.set_function("press_arrow_up", &Keyboard::ArrowUp);
-      lua->sol.set_function("press_arrow_right", &Keyboard::ArrowRight);
-      lua->sol.set_function("press_arrow_down", &Keyboard::ArrowDown);
-      lua->sol.set_function("press_arrow_left", &Keyboard::ArrowLeft);
+      bindKeyboard();
+      bindLogger();
+      bindSDL();
+      bindEntity();
+      bindRegistry();
+      bindMisc();
+    }
 
-      //
-      // Logger
+    void Update() const {
+      sol::function onUpdate = lua->sol["onUpdate"];
+      onUpdate();
+    }
 
-      lua->sol.set_function("log", &Logger::Log);
-      lua->sol.set_function("logError", &Logger::Err);
+  private:
+    void bindRegistry() {
+      lua->sol.set_function(
+          "get_entity_by_tag",
+          [this](const std::string& tag) {
+            return registry->GetEntityByTag(tag);
+          }
+      );
 
-      //
-      // SDL
+      lua->sol.set_function(
+          "get_entities_by_group",
+          [this](const std::string& group) {
+            return registry->GetEntitiesByGroup(group);
+          }
+      );
+    }
 
-      lua->sol.set_function("sdl_get_ticks", &SDL_GetTicks);
-
-      //
-      // Entity
-      sol::usertype<BoundingBoxComponent> boundingBoxType = lua->sol.new_usertype<BoundingBoxComponent>(
+    void bindEntity() {
+      lua->sol.new_usertype<BoundingBoxComponent>(
           "BoundingBoxComponent",
           "width", &BoundingBoxComponent::width,
           "height", &BoundingBoxComponent::height,
@@ -58,27 +68,25 @@ class ScriptSystem : public System {
             return entity.HasTag(tag);
           }
       );
+    }
 
-      //
-      // Registry
+    void bindSDL() const {
+      lua->sol.set_function("sdl_get_ticks", &SDL_GetTicks);
+    }
 
-      lua->sol.set_function(
-          "get_entity_by_tag",
-          [this](const std::string& tag) {
-            return registry->GetEntityByTag(tag);
-          }
-      );
+    void bindLogger() const {
+      lua->sol.set_function("log", &Logger::Log);
+      lua->sol.set_function("logError", &Logger::Err);
+    }
 
-      lua->sol.set_function(
-          "get_entities_by_group",
-          [this](const std::string& group) {
-            return registry->GetEntitiesByGroup(group);
-          }
-      );
+    void bindKeyboard() const {
+      lua->sol.set_function("press_arrow_up", &Keyboard::ArrowUp);
+      lua->sol.set_function("press_arrow_right", &Keyboard::ArrowRight);
+      lua->sol.set_function("press_arrow_down", &Keyboard::ArrowDown);
+      lua->sol.set_function("press_arrow_left", &Keyboard::ArrowLeft);
+    }
 
-      //
-      // Misc
-
+    void bindMisc() const {
       lua->sol.set_function(
           "check_aabb_collision",
           [](
@@ -98,11 +106,6 @@ class ScriptSystem : public System {
                 aY + aH > bY
             );
           });
-    }
-
-    void Update() {
-      sol::function onUpdate = lua->sol["onUpdate"];
-      onUpdate();
     }
 };
 

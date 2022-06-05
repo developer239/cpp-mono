@@ -8,6 +8,8 @@ set(SOURCES
         src/events/KeyPressedEvent.h
         src/services/AppState.h
         src/services/Lua.h
+        src/structs/DetectColorsArguments.h
+        src/structs/ErodeDilateArguments.h
         src/structs/Target.h
         src/systems/DetectionSystem.h
         src/systems/KeyboardControlSystem.h
