@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include "src/Keyboard.h"
 
 class ScriptSystem : public System {
   public:
@@ -16,9 +17,22 @@ class ScriptSystem : public System {
 
     void CreateLuaBindings() {
       //
+      // Keyboard
+      lua->sol.set_function("press_arrow_up", &Keyboard::ArrowUp);
+      lua->sol.set_function("press_arrow_right", &Keyboard::ArrowRight);
+      lua->sol.set_function("press_arrow_down", &Keyboard::ArrowDown);
+      lua->sol.set_function("press_arrow_left", &Keyboard::ArrowLeft);
+
+      //
+      // Logger
+
+      lua->sol.set_function("log", &Logger::Log);
+      lua->sol.set_function("logError", &Logger::Err);
+
+      //
       // SDL
 
-      lua->sol.set_function("sdl_get_ticks", SDL_GetTicks);
+      lua->sol.set_function("sdl_get_ticks", &SDL_GetTicks);
 
       //
       // Entity

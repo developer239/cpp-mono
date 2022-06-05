@@ -29,8 +29,6 @@ function onUpdate()
     -- sort this !!
 
     for i, starPosition in ipairs(starIndexToPosition) do
-        print(i, starPosition.index)
-
         star = stars[starPosition.index]
         starBoundingBox = get_entity_bounding_box(star)
         areaBoundingBox = get_entity_bounding_box(areaBack)
@@ -48,10 +46,12 @@ function onUpdate()
 
         if collisionHappened and (ticks - ACTIONS[4].lastAt > MIN_DELAY) then
             if ticks - ACTIONS[4].lastAt > 100000 then
-                print("Fixing position")
+                logError("Fixing position")
                 ACTIONS[4].lastAt = sdl_get_ticks();
             else
-                print("Press arrow left")
+                log("Press arrow left")
+                ACTIONS[4].lastAt = sdl_get_ticks();
+                press_arrow_left();
             end
         end
 
