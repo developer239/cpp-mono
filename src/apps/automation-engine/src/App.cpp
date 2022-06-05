@@ -8,6 +8,7 @@
 #include "systems/KeyboardControlSystem.h"
 #include "systems/DetectionSystem.h"
 #include "systems/RenderBoundingBoxSystem.h"
+#include "systems/ScriptSystem.h"
 
 void App::OnSetup() {
   lua->LoadSolScript("assets/scripts/strength.lua");
@@ -22,6 +23,9 @@ void App::OnSetup() {
   registry->AddSystem<DetectionSystem>();
   registry->AddSystem<RenderBoundingBoxSystem>();
   registry->AddSystem<PlayerDecisionSystem>();
+  registry->AddSystem<ScriptSystem>();
+
+  registry->GetSystem<ScriptSystem>().CreateLuaBindings(lua);
 
   lua->LoadEntities(registry);
   lua->LoadTargets(appState);
@@ -39,6 +43,7 @@ void App::OnUpdate() {
 
   registry->GetSystem<DetectionSystem>().Update(screen, appState, registry);
   registry->GetSystem<PlayerDecisionSystem>().Update(registry, appState);
+  registry->GetSystem<ScriptSystem>().Update();
 }
 
 void App::OnRender() {
