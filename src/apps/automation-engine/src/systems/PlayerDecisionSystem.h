@@ -18,7 +18,6 @@ class PlayerDecisionSystem : public System {
 
     void Update(std::shared_ptr<Registry>& registry, std::shared_ptr<AppState>& appState) {
       auto ticks = SDL_GetTicks();
-      bool hasPlayed = false;
 
       auto areas = registry->GetEntitiesByGroup("Area");
       auto apples = registry->GetEntitiesByGroup("Apple");
@@ -87,7 +86,6 @@ class PlayerDecisionSystem : public System {
             }
 
             appState->actions[actionIndex].lastAt = SDL_GetTicks();
-            hasPlayed = true;
           }
         }
       }

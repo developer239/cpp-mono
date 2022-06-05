@@ -11,9 +11,6 @@
 #include "systems/CollisionSystem.h"
 #include "components/BoundingBoxComponent.h"
 
-int lastA = 0;
-int lastB = 0;
-
 void App::OnSetup() {
   screen = std::make_unique<Screen>(&state.window.width, &state.window.height, &appState->windowX, &appState->windowY);
 
