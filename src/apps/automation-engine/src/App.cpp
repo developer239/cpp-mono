@@ -9,6 +9,8 @@
 #include "systems/RenderBoundingBoxSystem.h"
 #include "systems/ScriptSystem.h"
 
+int lastA = 0;
+
 void App::OnSetup() {
   // Read directly from source so you don't have to rebuild
   lua->LoadSolScript("../../../../src/apps/automation-engine/assets/scripts/strength.lua");
@@ -40,7 +42,11 @@ void App::OnUpdate() {
 
   registry->GetSystem<ScreenSystem>().Update(screen);
   registry->GetSystem<DetectionSystem>().Update(screen, appState, registry);
-  registry->GetSystem<ScriptSystem>().Update();
+
+  if(time->msPreviousFrame - lastA > 400) {
+    registry->GetSystem<ScriptSystem>().Update();
+    lastA = time->msPreviousFrame;
+  }
 }
 
 void App::OnRender() {

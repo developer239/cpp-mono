@@ -1,11 +1,56 @@
+ACTIONS = {
+    { areaType = "AreaTop", lastAt = 0 },
+    { areaType = "AreaMid", lastAt = 0 },
+    { areaType = "AreaBottom", lastAt = 0 },
+    { areaType = "AreaBack", lastAt = 0 },
+}
+
+MIN_DELAY = 280;
+
 function onUpdate()
     ticks = sdl_get_ticks()
 
-    entities = get_entities_by_group("Area")
+    stars = get_entities_by_group("Star")
+    areaBack = get_entity_by_tag("AreaBack")
 
-    for i, entity in ipairs(entities) do
-        print(i, entity.get_id)
+    starIndexToPosition = {}
+
+    for i, star in ipairs(stars) do
+        starIndexToPosition[i] = {
+            index = i,
+            positionX = get_entity_bounding_box(star).positionX
+        }
     end
+
+    for i, starPosition in ipairs(starIndexToPosition) do
+        print(i, starPosition.index)
+
+        star = stars[starPosition.index]
+        starBoundingBox = get_entity_bounding_box(star)
+        areaBoundingBox = get_entity_bounding_box(areaBack)
+
+        collisionHappened = check_aabb_collision(
+                starBoundingBox.positionX,
+                starBoundingBox.positionY,
+                starBoundingBox.width,
+                starBoundingBox.height,
+                areaBoundingBox.positionX,
+                areaBoundingBox.positionY,
+                areaBoundingBox.width,
+                areaBoundingBox.height
+        )
+
+        if collisionHappened and (ticks - ACTIONS[4].lastAt > MIN_DELAY) then
+            if ticks - ACTIONS[4].lastAt > 100000 then
+                print("Fixing position")
+                ACTIONS[4].lastAt = sdl_get_ticks();
+            else
+                print("Press arrow left")
+            end
+        end
+
+    end
+
 end
 
 Level = {
