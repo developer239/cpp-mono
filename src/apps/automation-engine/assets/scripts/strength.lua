@@ -1,3 +1,7 @@
+function onUpdate()
+    print("Hello World!")
+end
+
 Level = {
     window = {
         windowX = 0,

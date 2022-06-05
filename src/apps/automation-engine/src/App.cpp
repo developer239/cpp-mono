@@ -23,9 +23,9 @@ void App::OnSetup() {
   registry->AddSystem<DetectionSystem>();
   registry->AddSystem<RenderBoundingBoxSystem>();
   registry->AddSystem<PlayerDecisionSystem>();
-  registry->AddSystem<ScriptSystem>();
+  registry->AddSystem<ScriptSystem>(lua);
 
-  registry->GetSystem<ScriptSystem>().CreateLuaBindings(lua);
+  registry->GetSystem<ScriptSystem>().CreateLuaBindings();
 
   lua->LoadEntities(registry);
   lua->LoadTargets(appState);
