@@ -17,6 +17,10 @@ class PlayerDecisionSystem : public System {
     }
 
     void Update(std::shared_ptr<Registry>& registry, std::shared_ptr<AppState>& appState) {
+      //
+      // Apple related logic start
+      //
+
       auto ticks = SDL_GetTicks();
 
       auto areas = registry->GetEntitiesByGroup("Area");
@@ -65,9 +69,13 @@ class PlayerDecisionSystem : public System {
             actionIndex = 2;
           }
 
+          if (actionIndex == -1) {
+            continue;
+          }
+
           if (collisionHappened && ticks - appState->actions[actionIndex].lastAt > MIN_DELAY) {
             if (ticks - appState->actions[actionIndex].lastAt > 100000) {
-              Logger::Err("Fixing timestamp: " + std::to_string(ticks - appState->actions[actionIndex].lastAt));
+              Logger::Err("Fixing [apple] timestamp: " + std::to_string(ticks - appState->actions[actionIndex].lastAt));
               appState->actions[actionIndex].lastAt = SDL_GetTicks();
               continue;
             }
@@ -89,6 +97,63 @@ class PlayerDecisionSystem : public System {
           }
         }
       }
+
+      //
+      // Apple related logic end
+      //
+
+      //
+      // Star related logic start
+      //
+
+      auto stars = registry->GetEntitiesByGroup("Star");
+      auto areaBack = registry->GetEntityByTag("AreaBack");
+
+      std::vector<IndexPositionMap> starPositions = {};
+
+      for (int index = 0; index < stars.size(); index++) {
+        auto star = stars[index];
+        auto starBoundingBox = star.GetComponent<BoundingBoxComponent>();
+
+        starPositions.push_back({ index, starBoundingBox.positionY });
+      }
+
+      std::sort(starPositions.begin(), starPositions.end(), [](IndexPositionMap a, IndexPositionMap b) {
+        return a.positionX > b.positionX;
+      });
+
+      for (auto starPosition: starPositions) {
+        auto star = stars[starPosition.index];
+        auto starBoundingBox = star.GetComponent<BoundingBoxComponent>();
+        auto areaBoundingBox = areaBack.GetComponent<BoundingBoxComponent>();
+
+        bool collisionHappened = CheckAABBCollision(
+            starBoundingBox.positionX,
+            starBoundingBox.positionY,
+            starBoundingBox.width,
+            starBoundingBox.height,
+            areaBoundingBox.positionX,
+            areaBoundingBox.positionY,
+            areaBoundingBox.width,
+            areaBoundingBox.height
+        );
+
+        if (collisionHappened && ticks - appState->actions[3].lastAt > MIN_DELAY) {
+          if (ticks - appState->actions[3].lastAt > 100000) {
+            Logger::Err("Fixing [star] timestamp: " + std::to_string(ticks - appState->actions[3].lastAt));
+            appState->actions[3].lastAt = SDL_GetTicks();
+            continue;
+          }
+
+          Logger::Log("AreaBack after " + std::to_string(ticks - appState->actions[3].lastAt) + " ms");
+          Keyboard::ArrowLeft();
+          appState->actions[3].lastAt = SDL_GetTicks();
+        }
+      }
+
+      //
+      // Start related logic end
+      //
     }
 
     bool CheckAABBCollision(double aX, double aY, double aW, double aH, double bX, double bY, double bW, double bH) {

@@ -15,7 +15,7 @@ set(SOURCES
         src/App.cpp
         src/App.h
         src/main.cpp
-        src/systems/PlayerDecisionSystem.h src/events/CollisionEvent.h)
+        src/systems/PlayerDecisionSystem.h src/events/CollisionEvent.h src/structs/Target.h)
 
 add_executable(${APP_NAME} ${SOURCES})
 

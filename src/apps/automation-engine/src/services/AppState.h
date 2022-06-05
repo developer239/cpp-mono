@@ -2,14 +2,13 @@
 
 #include <string>
 #include <vector>
+#include "../structs/Target.h"
 
 struct Action {
   std::string areaType;
 
   unsigned int lastAt;
 };
-
-// TODO: All of this should probably live in Lua
 
 class AppState {
   public:
@@ -18,30 +17,41 @@ class AppState {
     int windowX = 0;
     int windowY = 60;
 
-    int lowerRed = 0;
-    int lowerGreen = 0;
-    int lowerBlue = 105;
-
-    int upperRed = 200;
-    int upperGreen = 65;
-    int upperBlue = 255;
-
-    int morphologyWidth = 10;
-    int morphologyHeight = 10;
-
-    bool shouldDrawBoundingBoxes = true;
-    bool shouldDetectColors = true;
-    bool shouldErodeDilate = true;
-    bool shouldFindContours = true;
-
-
-    int lastActionTopAt = 0;
-    int lastActionMidAt = 0;
-    int lastActionBottomAt = 0;
+    std::vector<Target> targets{
+        Target{
+            "Apple",
+            DetectColorsArguments{
+                0,
+                0,
+                105,
+                200,
+                65,
+                255,
+                22,
+                22,
+            },
+            ErodeDilateArguments{ 10, 10 }
+        },
+        Target{
+            "Star",
+            DetectColorsArguments{
+                0,
+                135,
+                105,
+                75,
+                255,
+                255,
+                15,
+                15
+            },
+            ErodeDilateArguments{ 10, 10 }
+        }
+    };
 
     std::vector<Action> actions{
         { "AreaTop",    0 },
         { "AreaMid",    0 },
-        { "AreaBottom", 0 }
+        { "AreaBottom", 0 },
+        { "AreaBack", 0 }
     };
 };

@@ -15,9 +15,13 @@ class RenderBoundingBoxSystem : public System {
         auto component = entity.GetComponent<BoundingBoxComponent>();
 
         cv::Scalar color = cv::Scalar(0, 255, 255);
-        cv::rectangle(*latestScreenShot, cv::Point2i(component.positionX, component.positionY),
-                      cv::Point2i(component.positionX + component.width, component.positionY + component.height), color,
-                      2);
+        cv::rectangle(
+            *latestScreenShot,
+            cv::Point2i(component.positionX, component.positionY),
+            cv::Point2i(component.positionX + component.width, component.positionY + component.height),
+            color,
+            2
+        );
       }
     }
 };

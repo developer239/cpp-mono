@@ -36,6 +36,11 @@ void App::OnSetup() {
   areaBottom.Tag("AreaBottom");
   areaBottom.Group("Area");
   areaBottom.AddComponent<BoundingBoxComponent>(140, 426, 180, 7);
+
+  Entity areaBack = registry->CreateEntity();
+  areaBack.Tag("AreaBack");
+  areaBack.Group("Area");
+  areaBack.AddComponent<BoundingBoxComponent>(37, 324, 28, 64);
 }
 
 void App::OnInput(SDL_Event sdlEvent) {
