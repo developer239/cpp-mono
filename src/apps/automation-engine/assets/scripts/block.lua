@@ -1,3 +1,4 @@
+-- TODO: calculate in C++ and expose bindings
 function boundingBoxCenter(boundingBox)
     return {
         x = boundingBox.positionX + boundingBox.width / 2,
@@ -5,13 +6,12 @@ function boundingBoxCenter(boundingBox)
     }
 end
 
+-- TODO: possibly create helper math class in C++ and expose bindings
 function calculateDistanceBetweenTwoPoints(pointA, pointB)
     return math.sqrt(math.pow(pointA.x - pointB.x, 2) + math.pow(pointA.y - pointB.y, 2))
 end
 
 function playApple()
-    ticks = sdl_get_ticks()
-
     apples = get_entities_by_group("Apple")
     areaPlayer = get_entity_by_tag("AreaPlayer")
 
@@ -52,6 +52,8 @@ Level = {
     targets = {
         [0] = {
             tag = "Apple",
+            -- TODO: make colors vectors ?
+            -- TODO: implement area ?? in C++ to perform detection only on certain area
             detectColors = {
                 lowerRed = 0,
                 lowerGreen = 0,
