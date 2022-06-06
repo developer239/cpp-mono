@@ -11,7 +11,7 @@
 
 void App::OnSetup() {
   // Read directly from source so you don't have to rebuild
-  lua->LoadSolScript("../../../../src/apps/automation-engine/assets/scripts/strength.lua");
+  lua->LoadSolScript("../../../../src/apps/automation-engine/assets/scripts/block.lua");
 
   lua->LoadWindowPosition(appState);
   lua->LoadEntities(registry);

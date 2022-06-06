@@ -2,6 +2,7 @@
 
 #include <vector>
 #include "src/Keyboard.h"
+#include "src/Mouse.h"
 
 class ScriptSystem : public System {
   public:
@@ -16,6 +17,7 @@ class ScriptSystem : public System {
     }
 
     void CreateLuaBindings() {
+      bindMouse();
       bindKeyboard();
       bindLogger();
       bindSDL();
@@ -77,6 +79,10 @@ class ScriptSystem : public System {
     void bindLogger() const {
       lua->sol.set_function("log", &Logger::Log);
       lua->sol.set_function("logError", &Logger::Err);
+    }
+
+    void bindMouse() const {
+      lua->sol.set_function("mouse_move", &Mouse::move);
     }
 
     void bindKeyboard() const {
